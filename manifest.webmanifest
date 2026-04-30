@@ -1,0 +1,27 @@
+{
+    "name": "+2 Rénovation E.U.R.L",
+    "short_name": "+2 Rénovation",
+    "description": "Artisan RGE & QUALIPAC à Marcillat-en-Combraille (Allier 03). Rénovation énergétique, pompes à chaleur, climatisation, VMC, menuiseries, maçonnerie, joints de pierre.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#FAFAFA",
+    "theme_color": "#0F1A2A",
+    "lang": "fr-FR",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%230F1A2A'/%3E%3Ccircle cx='67' cy='96' r='27' fill='%23F26A2E'/%3E%3Ccircle cx='100' cy='96' r='27' fill='%231FB5A8'/%3E%3Ccircle cx='133' cy='96' r='27' fill='%23F26A2E' fill-opacity='0.85'/%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230F1A2A'/%3E%3Ccircle cx='178' cy='256' r='72' fill='%23F26A2E'/%3E%3Ccircle cx='266' cy='256' r='72' fill='%231FB5A8'/%3E%3Ccircle cx='354' cy='256' r='72' fill='%23F26A2E' fill-opacity='0.85'/%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["business", "productivity"]
+}
