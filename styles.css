@@ -3259,14 +3259,16 @@ main#main > .section-soft {
 
 main#main > .hero.hero-cinema {
     /* Override du flex-center du hero générique : on a besoin d'une section haute */
-    display: block;
+    display: block !important;
     align-items: stretch;
     padding: 0;
     height: 320vh;          /* Runway de scroll : 1 hero visible + 2.2vh pour le scrub */
-    min-height: 320vh;
+    min-height: 320vh !important;
     background: var(--ink);
-    overflow: visible;
-    contain: paint;
+    /* CRUCIAL : overflow visible pour que position:sticky de l'enfant fonctionne.
+       L'ancien hero utilisait overflow:hidden, ce qui casse complètement sticky. */
+    overflow: visible !important;
+    /* PAS de contain: paint ici → casse sticky sur iOS Safari */
     margin-top: 0;
     border-radius: 0;
     box-shadow: none;
