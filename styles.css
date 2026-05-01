@@ -3616,3 +3616,143 @@ main#main > .hero-features-strip + .trust-strip {
     }
 }
 
+/* ==========================================================================
+   SERVICES MARQUEE — Défilement horizontal infini des corps d'état
+   Pause au survol pour permettre la lecture. Désactivé en reduce-motion.
+   ========================================================================== */
+
+.services-marquee {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-block: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3rem);
+    overflow: hidden;
+    padding-block: clamp(0.85rem, 1.6vw, 1.25rem);
+    background: linear-gradient(
+        90deg,
+        var(--ink) 0%,
+        var(--ink-90) 50%,
+        var(--ink) 100%
+    );
+    border-block: 1px solid rgba(31, 181, 168, 0.18);
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+    );
+            mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+    );
+}
+
+.services-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    white-space: nowrap;
+    animation: servicesMarqueeScroll 38s linear infinite;
+    will-change: transform;
+}
+
+.services-marquee:hover .services-marquee-track {
+    animation-play-state: paused;
+}
+
+.services-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-utility);
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.01em;
+    transition: color var(--t-fast) var(--ease);
+    flex-shrink: 0;
+}
+
+.services-marquee-item svg {
+    flex-shrink: 0;
+    color: var(--teal);
+    transition: transform var(--t) var(--ease);
+}
+
+.services-marquee:hover .services-marquee-item:hover {
+    color: var(--teal-light);
+}
+.services-marquee:hover .services-marquee-item:hover svg {
+    transform: rotate(-8deg) scale(1.15);
+}
+
+/* Variante featured = la coordination tous corps d'état (différenciateur) */
+.services-marquee-item-featured {
+    color: var(--teal-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: clamp(0.82rem, 1.35vw, 0.95rem);
+    padding: 0.4rem 0.85rem;
+    background: rgba(31, 181, 168, 0.12);
+    border: 1px solid rgba(31, 181, 168, 0.35);
+    border-radius: 99px;
+}
+.services-marquee-item-featured svg {
+    color: var(--teal-light);
+}
+
+.services-marquee-dot {
+    color: var(--teal);
+    font-size: 0.55rem;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+@keyframes servicesMarqueeScroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }   /* -50% car le track est dupliqué (boucle parfaite) */
+}
+
+/* Mobile : ralentir un peu + texte plus petit */
+@media (max-width: 768px) {
+    .services-marquee {
+        margin-block: 1.25rem 1.75rem;
+        padding-block: 0.75rem;
+    }
+    .services-marquee-track {
+        gap: 1rem;
+        animation-duration: 30s;
+    }
+    .services-marquee-item {
+        font-size: 0.88rem;
+    }
+    .services-marquee-item svg {
+        width: 16px;
+        height: 16px;
+    }
+    .services-marquee-item-featured {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.76rem;
+    }
+}
+
+/* Reduce-motion : désactive le défilement, affiche statiquement */
+@media (prefers-reduced-motion: reduce) {
+    .services-marquee-track {
+        animation: none;
+        flex-wrap: wrap;
+        white-space: normal;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+    .services-marquee {
+        -webkit-mask-image: none;
+                mask-image: none;
+    }
+}
+
