@@ -39,8 +39,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ccircle cx='35' cy='50' r='14' fill='%23F26A2E'/%3E%3Ccircle cx='52' cy='50' r='14' fill='%231FB5A8'/%3E%3Ccircle cx='69' cy='50' r='14' fill='%23F26A2E' fill-opacity='0.85'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ccircle cx='35' cy='50' r='14' fill='%23F26A2E'/%3E%3Ccircle cx='52' cy='50' r='14' fill='%231FB5A8'/%3E%3Ccircle cx='69' cy='50' r='14' fill='%23F26A2E' fill-opacity='0.85'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ctext x='28' y='72' font-family='Inter,Arial,sans-serif' font-weight='900' font-size='62' fill='%231FB5A8'%3E2%3C/text%3E%3Cpath d='M68 28 L82 38 L82 42 L68 42 Z' fill='%231FB5A8'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ctext x='28' y='72' font-family='Inter,Arial,sans-serif' font-weight='900' font-size='62' fill='%231FB5A8'%3E2%3C/text%3E%3Cpath d='M68 28 L82 38 L82 42 L68 42 Z' fill='%231FB5A8'/%3E%3C/svg%3E">
     <link rel="manifest" href="manifest.webmanifest">
 
     <script type="application/ld+json">
@@ -342,46 +342,117 @@
         <header class="cert-header reveal">
             <span class="section-eyebrow eyebrow-light">Certifications · Labels · Distinctions</span>
             <h2 class="section-title">Notre savoir-faire <em>reconnu par les institutions.</em></h2>
-            <p class="cert-lead">7 qualifications officielles qui vous garantissent un travail aux normes — et qui vous donnent accès aux aides MaPrimeRénov' et CEE.</p>
+            <p class="cert-lead">RGE, QualiPAC, MaPrimeRénov', Hager smart building, AFPA, Médaille d'Or, garantie décennale : 7 qualifications officielles qui vous donnent accès aux aides et garantissent un travail aux normes.</p>
         </header>
 
         <div class="cert-carousel" id="certCarousel" data-orbit-speed="0.12" data-orbit-flatness="0.45">
             <div class="cert-carousel-stage">
+
+                <!-- RGE — Reconnu Garant de l'Environnement -->
                 <div class="cert-card cert-card-rge" style="--card-rotation:-15deg" tabindex="0">
-                    <span class="cert-mark">RGE</span>
+                    <span class="cert-logo" aria-label="Logo RGE">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <text x="60" y="38" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="28" fill="#0F8C3B" letter-spacing="-0.5">RGE</text>
+                            <path d="M44 50 Q60 44 76 50" stroke="#0F8C3B" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M50 56 Q60 52 70 56" stroke="#1FB5A8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </span>
                     <h3>Reconnu Garant<br>de l'Environnement</h3>
                     <p>Aides MaPrimeRénov' &amp; CEE éligibles</p>
                 </div>
+
+                <!-- QualiPAC -->
                 <div class="cert-card cert-card-qp" style="--card-rotation:-10deg" tabindex="0">
-                    <span class="cert-mark">QP</span>
+                    <span class="cert-logo" aria-label="Logo QualiPAC">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <text x="60" y="32" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="13" fill="#1F4E8E" letter-spacing="0.5">Quali</text>
+                            <rect x="32" y="38" width="56" height="22" rx="3" fill="#FFC72C"/>
+                            <text x="60" y="54" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="14" fill="#0F1A2A" letter-spacing="0.4">PAC</text>
+                        </svg>
+                    </span>
                     <h3>QualiPAC</h3>
-                    <p>Pompes à chaleur certifiées installateur</p>
+                    <p>Pompes à chaleur — qualification installateur</p>
                 </div>
-                <div class="cert-card cert-card-gold" style="--card-rotation:-5deg" tabindex="0">
-                    <span class="cert-mark">★</span>
-                    <h3>Médaille d'Or<br>régionale</h3>
-                    <p>Meilleur Apprenti de France — distinction métier</p>
-                </div>
-                <div class="cert-card cert-card-hager" style="--card-rotation:0deg" tabindex="0">
-                    <span class="cert-mark">H</span>
-                    <h3>HAGER smart<br>building</h3>
-                    <p>Électricité connectée &amp; domotique certifiée</p>
-                </div>
-                <div class="cert-card cert-card-afpa" style="--card-rotation:5deg" tabindex="0">
-                    <span class="cert-mark">A</span>
-                    <h3>AFPA<br>équipement</h3>
-                    <p>Diplôme équipement et maintenance du bâtiment</p>
-                </div>
-                <div class="cert-card cert-card-decennale" style="--card-rotation:10deg" tabindex="0">
-                    <span class="cert-mark">10</span>
-                    <h3>Garantie<br>décennale</h3>
-                    <p>Assurance pro à jour, fournie sur demande</p>
-                </div>
-                <div class="cert-card cert-card-mpr" style="--card-rotation:15deg" tabindex="0">
-                    <span class="cert-mark">MPR</span>
+
+                <!-- MaPrimeRénov' -->
+                <div class="cert-card cert-card-mpr" style="--card-rotation:-5deg" tabindex="0">
+                    <span class="cert-logo" aria-label="Logo MaPrimeRénov'">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <path d="M8 12 H22 L26 30 L30 12 H44 V58 H34 V32 L29 50 H23 L18 32 V58 H8 Z" fill="#001A70"/>
+                            <text x="50" y="32" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="11" fill="#001A70">a Prime</text>
+                            <text x="50" y="48" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="13" fill="#E1000F">Rénov'</text>
+                            <path d="M48 56 L112 56" stroke="#001A70" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
                     <h3>MaPrimeRénov'<br>éligible</h3>
                     <p>Dossier d'aide monté pour vous, sans frais</p>
                 </div>
+
+                <!-- Hager smart building -->
+                <div class="cert-card cert-card-hager" style="--card-rotation:0deg" tabindex="0">
+                    <span class="cert-logo" aria-label="Logo Hager smart building">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <rect x="8" y="22" width="104" height="26" rx="2" fill="#E20020"/>
+                            <text x="60" y="40" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="18" fill="#fff" letter-spacing="-0.3">hager</text>
+                            <text x="60" y="60" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="500" font-size="7" fill="#0F1A2A" letter-spacing="0.6">SMART BUILDING</text>
+                        </svg>
+                    </span>
+                    <h3>Hager smart<br>building</h3>
+                    <p>Électricité connectée &amp; domotique certifiée</p>
+                </div>
+
+                <!-- AFPA -->
+                <div class="cert-card cert-card-afpa" style="--card-rotation:5deg" tabindex="0">
+                    <span class="cert-logo" aria-label="Logo AFPA">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <text x="60" y="36" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="22" fill="#0F1A2A" letter-spacing="1">AFPA</text>
+                            <path d="M14 48 Q30 40 46 48 T78 48 T106 48" stroke="#E20020" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            <path d="M14 56 Q30 50 46 56 T78 56 T106 56" stroke="#E20020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        </svg>
+                    </span>
+                    <h3>AFPA<br>équipement</h3>
+                    <p>Diplôme équipement et maintenance du bâtiment</p>
+                </div>
+
+                <!-- Médaille d'Or — Meilleur Apprenti de France -->
+                <div class="cert-card cert-card-gold" style="--card-rotation:10deg" tabindex="0">
+                    <span class="cert-logo" aria-label="Médaille d'Or régionale">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="goldG" cx="50%" cy="50%" r="55%">
+                                    <stop offset="0%" stop-color="#FFE9A8"/>
+                                    <stop offset="60%" stop-color="#F4C95D"/>
+                                    <stop offset="100%" stop-color="#A87919"/>
+                                </radialGradient>
+                            </defs>
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <circle cx="60" cy="35" r="22" fill="url(#goldG)" stroke="#8C6B1F" stroke-width="1.2"/>
+                            <path d="M60 22 L63 31 L72 31 L65 37 L68 46 L60 41 L52 46 L55 37 L48 31 L57 31 Z" fill="#8C6B1F"/>
+                        </svg>
+                    </span>
+                    <h3>Médaille d'Or<br>régionale</h3>
+                    <p>Meilleur Apprenti de France — distinction métier</p>
+                </div>
+
+                <!-- Garantie décennale -->
+                <div class="cert-card cert-card-decennale" style="--card-rotation:15deg" tabindex="0">
+                    <span class="cert-logo" aria-label="Garantie décennale">
+                        <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="70" rx="6" fill="#fff"/>
+                            <path d="M60 12 L82 18 V36 C82 48 73 56 60 60 C47 56 38 48 38 36 V18 Z" fill="#1FB5A8" stroke="#0F8C82" stroke-width="1"/>
+                            <text x="60" y="42" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="20" fill="#fff">10</text>
+                            <text x="60" y="52" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="6" fill="#fff" letter-spacing="0.5">ANS</text>
+                        </svg>
+                    </span>
+                    <h3>Garantie<br>décennale</h3>
+                    <p>Assurance pro à jour, fournie sur demande</p>
+                </div>
+
             </div>
         </div>
 
@@ -818,7 +889,7 @@
         <div class="reviews-grid">
             <article class="review-card reveal" style="--delay:80ms">
                 <div class="review-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#FFB997,#F26A2E)">M</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#4ECFC4,#1FB5A8)">M</div>
                     <div>
                         <strong>Marc P.</strong>
                         <span>Marcillat-en-Combraille · Pompe à chaleur</span>
@@ -851,7 +922,7 @@
 
             <article class="review-card reveal" style="--delay:240ms">
                 <div class="review-header">
-                    <div class="review-avatar" style="background:linear-gradient(135deg,#A0C4FF,#3A86FF)">L</div>
+                    <div class="review-avatar" style="background:linear-gradient(135deg,#3A465B,#0F1A2A)">L</div>
                     <div>
                         <strong>Laurent &amp; Sophie</strong>
                         <span>Mazirat · Rénovation complète tous corps d'état</span>
