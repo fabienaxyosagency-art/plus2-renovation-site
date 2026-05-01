@@ -3756,3 +3756,104 @@ main#main > .hero-features-strip + .trust-strip {
     }
 }
 
+/* ==========================================================================
+   SERVICES CARDS MARQUEE — Défilement horizontal des 9 cartes vers la DROITE
+   Sens inverse de la bande au-dessus pour créer un effet symétrique premium.
+   Gain d'espace vertical (pas de grille empilée) + sensation de mouvement.
+   ========================================================================== */
+
+.services-cards-marquee {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    padding-block: clamp(1rem, 2vw, 2rem);
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 5%,
+        #000 95%,
+        transparent 100%
+    );
+            mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 5%,
+        #000 95%,
+        transparent 100%
+    );
+}
+
+/* La grille devient un track flex qui défile vers la DROITE (reverse) */
+.services-cards-marquee .services-grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 1.25rem !important;
+    margin-bottom: 0 !important;
+    width: max-content;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    /* Sens INVERSE du marquee top : on part de -50% et on va vers 0 */
+    animation: servicesCardsMarqueeScroll 65s linear infinite;
+    will-change: transform;
+}
+
+/* Pause au survol pour pouvoir lire/cliquer */
+.services-cards-marquee:hover .services-grid {
+    animation-play-state: paused;
+}
+
+/* Cartes : largeur fixe pour layout prévisible */
+.services-cards-marquee .service-card {
+    flex: 0 0 clamp(280px, 24vw, 340px);
+    width: clamp(280px, 24vw, 340px);
+    /* On garde tous les autres styles existants de .service-card */
+}
+
+/* Hover individuel pour distinguer la carte survolée (pause active) */
+.services-cards-marquee .service-card:hover {
+    transform: translateY(-6px);
+    z-index: 2;
+}
+
+@keyframes servicesCardsMarqueeScroll {
+    from { transform: translate3d(-50%, 0, 0); }
+    to   { transform: translate3d(0, 0, 0); }
+}
+
+/* Mobile : ralentir + cartes adaptées */
+@media (max-width: 768px) {
+    .services-cards-marquee {
+        padding-block: 0.75rem;
+    }
+    .services-cards-marquee .services-grid {
+        gap: 0.85rem !important;
+        animation-duration: 55s;
+    }
+    .services-cards-marquee .service-card {
+        flex: 0 0 280px;
+        width: 280px;
+    }
+}
+
+/* Reduce-motion : désactive l'animation, retombe sur grille normale */
+@media (prefers-reduced-motion: reduce) {
+    .services-cards-marquee {
+        overflow: visible;
+        width: auto;
+        margin-left: 0;
+        -webkit-mask-image: none;
+                mask-image: none;
+    }
+    .services-cards-marquee .services-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)) !important;
+        animation: none;
+        width: auto;
+        padding-inline: 0;
+    }
+    .services-cards-marquee .service-card {
+        flex: initial;
+        width: auto;
+    }
+}
+

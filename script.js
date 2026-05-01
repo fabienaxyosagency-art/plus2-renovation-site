@@ -450,6 +450,29 @@
         maxRadius: 320,
     });
 
+    /* ===== Services Cards Marquee — duplication des 9 cartes pour boucle parfaite =====
+       L'animation CSS translate(-50% → 0%) attend un track contenant 2 fois les cartes.
+       On clone les originaux côté JS pour ne pas alourdir le HTML source. */
+    (function initServicesCardsMarquee() {
+        const wrapper = document.getElementById('servicesCardsMarquee');
+        if (!wrapper) return;
+        const track = wrapper.querySelector('.services-grid');
+        if (!track) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;     // Pas de clone si reduce-motion (grille statique)
+        const originals = Array.from(track.children);
+        if (!originals.length) return;
+        // Clone chaque carte et marque le clone comme aria-hidden (info dupliquée)
+        originals.forEach((card) => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            // Retire les délais d'animation reveal sur les clones (sinon ils flashent)
+            clone.style.removeProperty('--delay');
+            clone.classList.add('visible');     // Skip l'animation reveal
+            track.appendChild(clone);
+        });
+    })();
+
     /* ===== Frame Grid 3×3 expanding (réalisations / chantiers) ===== */
     const frameGrid = document.getElementById('frameGrid');
     if (frameGrid) {
