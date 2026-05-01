@@ -1,13 +1,19 @@
 # +2 Rénovation E.U.R.L
 
-> Artisan certifié RGE et QUALIPAC à Marcillat-en-Combraille (Allier, 03).
-> Spécialiste de la rénovation énergétique et de la maçonnerie traditionnelle.
+> Entreprise de rénovation tous corps d'état à Marcillat-en-Combraille (Allier, 03).
+> Une équipe locale à taille humaine prend en charge votre projet de A à Z :
+> couverture, menuiserie, pompe à chaleur & climatisation, placo, isolation,
+> maçonnerie, joints de pierre, VMC & chauffe-eau thermodynamique.
+> De la conception à la réception des clés — un seul interlocuteur, un seul
+> devis, un seul planning. Certifiée RGE QualiPAC, garantie décennale.
 > Intervention dans un rayon d'environ 20 km autour de Marcillat-en-Combraille.
 
 ## Identité
 
 - **Raison sociale** : +2 Rénovation E.U.R.L
-- **Slogan** : « De la maçonnerie au confort de votre habitat. »
+- **Aliases / synonymes** : Plus 2 Rénovation, Plus2 Rénovation, Plus de Rénovation, +2 Reno
+- **Slogan** : « Tous les corps d'état, une seule équipe. »
+- **Positionnement** : entreprise de rénovation polyvalente avec petite équipe déployable, capable de mener un projet complet de la conception à la réception des clés sans sous-traitance non maîtrisée.
 - **Gérant fondateur** : Thomas Bucceri
 - **Adresse siège** : Les Huttes Saint-Georges, 03420 Marcillat-en-Combraille, Allier
 - **Date de création** : 2018
@@ -16,6 +22,15 @@
 - **SIRET** : 843 665 746 00015
 - **SIREN** : 843 665 746
 - **TVA intracommunautaire** : FR15 843 665 746
+
+## Différenciateur
+
+Là où la plupart des artisans de la région se spécialisent sur **un** corps
+d'état (juste la PAC, juste la maçonnerie, juste les fenêtres…), +2 Rénovation
+**maîtrise 8 corps d'état** et propose en plus la **conception et la
+coordination de projets globaux**. Le client n'a plus besoin de jongler entre
+5 entreprises, de coordonner 5 plannings, de gérer 5 devis et 5 garanties
+décennales différentes : tout passe par un seul interlocuteur.
 
 ## Certifications, distinctions & garanties
 
@@ -26,40 +41,91 @@
 - **AFPA** — Équipement et maintenance du bâtiment
 - **Diplôme professionnel paysagisme** (aménagements extérieurs)
 - **Garantie décennale** sur tous travaux structurels
-- **Aides éligibles** : MaPrimeRénov', Certificats d'Économie d'Énergie (CEE)
+- **Aides éligibles** : MaPrimeRénov', MaPrimeRénov' Sérénité (rénovation globale), Certificats d'Économie d'Énergie (CEE), aides ANAH
 
-## Services
+## Services (8 corps d'état + 1 service de coordination)
 
-1. **Pompes à chaleur** (air/eau, air/air, géothermique) — certifié QUALIPAC
-2. **Climatisation réversible** (splits, gainables, multi-zones)
-3. **VMC** simple flux et double flux haut rendement
-4. **Chauffe-eau thermodynamique** (200L à 300L)
-5. **Menuiseries extérieures** (fenêtres, portes, baies, volets — PVC, alu, bois)
-6. **Maçonnerie traditionnelle** (création d'ouvertures, dalles, gros œuvre, petits ouvrages)
-7. **Joints de pierre** (rejointoiement à la chaux pour façades en pierre de Combraille — à partir de 1700 €)
+### Service phare — Conception & coordination tous corps d'état
+Maîtrise d'œuvre globale d'un projet de rénovation : étude de faisabilité,
+conception, chiffrage unique, planning maître, exécution coordonnée,
+suivi hebdomadaire, garantie décennale couvrant l'ensemble. Idéal pour
+rénovation complète, extension, réhabilitation de longère, transformation
+de bâti ancien.
+
+### 1. Couverture & zinguerie
+Réfection de toiture, faîtage, raccords, gouttières et descentes en zinc.
+Tuiles plates, mécaniques ou ardoises — adapté au bâti de la Combraille.
+Diagnostic charpente inclus.
+
+### 2. Menuiseries extérieures
+Fenêtres, portes d'entrée, baies vitrées, volets roulants motorisés.
+PVC, aluminium ou bois. Double ou triple vitrage. Crédit d'impôt et CEE.
+Marques : K-Line, Tryba, Internorm, Bouvet.
+
+### 3. Pompe à chaleur & climatisation
+PAC air/eau, air/air, géothermique. Climatisation réversible mono ou
+multi-split. Étude thermique offerte, dimensionnement précis, pose
+certifiée RGE QualiPAC. Marques : Daikin, Atlantic, Mitsubishi, Hitachi,
+De Dietrich.
+
+### 4. Placo & cloisons
+Cloisons, doublages, faux plafonds, dressings, niches encastrées.
+Plaques standard, hydrofuges (BA13H1), phoniques, ignifuges. Finitions
+soignées prêtes à peindre.
+
+### 5. Isolation thermique
+Combles perdus, rampants, murs intérieurs (ITI), murs extérieurs (ITE),
+planchers bas. Laine de verre, ouate de cellulose, polyuréthane, fibre
+de bois. Aides cumulables CEE + MaPrimeRénov'. Marques : Isover, Knauf,
+Soprema, Steico.
+
+### 6. Maçonnerie
+Création d'ouvertures, dalles, chapes, escaliers, agrandissements,
+murs en parpaing ou en pierre, extensions complètes. Du petit ouvrage
+à l'extension lourde.
+
+### 7. Joints de pierre
+Rejointoiement traditionnel à la chaux (mortier NHL) pour façades en
+pierre de Combraille. Mur respirant, esthétique d'origine retrouvée,
+durabilité de plusieurs décennies. **À partir de 1 700 €**.
+
+### 8. VMC & chauffe-eau thermodynamique
+VMC simple ou double flux haut rendement (récupération 90 % des
+calories). Chauffe-eau thermodynamique 200-300 L : 3× moins d'énergie
+qu'un cumulus classique. Aides ANAH et CEE.
 
 ## Zone d'intervention
 
 Communes principales (rayon ~20 km autour de Marcillat-en-Combraille) :
-Marcillat-en-Combraille, Terjat, Mazirat, Saint-Marcel-en-Marcillat, Ronnet, Lignerolles, Saint-Fargeol, Arpheuilles-Saint-Priest, Villebret, Hyds, Néris-les-Bains, Montluçon.
+Marcillat-en-Combraille (siège), Terjat, Mazirat, Saint-Marcel-en-Marcillat,
+Ronnet, Lignerolles, Saint-Fargeol, Arpheuilles-Saint-Priest, Villebret,
+Hyds, Néris-les-Bains, Montluçon, Saint-Genest, Durdat-Larequille,
+Chamblet, Domérat (sur étude).
 
 ## Engagements
 
-1. **Conseils clairs**, jamais de jargon — vous décidez en connaissance de cause.
-2. **Aides montées pour vous** — RGE/QUALIPAC, dossiers MaPrimeRénov' et CEE pris en charge.
-3. **SAV joignable**, garantie décennale activée à la livraison.
+1. **Une équipe, plusieurs corps d'état** — pris en charge en interne ou avec partenaires de confiance long terme.
+2. **Un seul interlocuteur, un seul devis, un seul planning** — fini la coordination chronophage entre 5 entreprises.
+3. **RGE, QualiPAC, garantie décennale globale** — aides MaPrimeRénov' et CEE montées pour vous.
+4. **Conseils clairs, jamais de jargon** — vous décidez en connaissance de cause.
+5. **SAV joignable** — Thomas reste votre contact après la livraison.
 
 ## Processus
 
-1. Premier contact téléphonique sous 24h
-2. Visite technique sur place (mesures, photos, contraintes)
-3. Devis détaillé sous 5 jours, aides incluses
-4. Réalisation à la date convenue
-5. Réception conjointe et activation des garanties
+1. Premier contact téléphonique ou WhatsApp sous 24 h
+2. Visite technique sur place (mesures, photos, contraintes, opportunités d'aides)
+3. Devis détaillé sous 5 jours, aides MaPrimeRénov' et CEE incluses
+4. Planning maître et lancement du chantier à la date convenue
+5. Réception conjointe, levée des réserves, activation des garanties
+
+## Avis clients
+
+Note Google : 4,9 / 5 — clients en Combraille et sud Allier.
 
 ## Contact
 
 - Site web : https://www.plus2-renovation.fr/
+- Site Vercel : https://plus2-renovation-site.vercel.app/
 - E-mail : plus2renovation@gmail.com
 - Téléphone : 06 60 95 51 51
 - WhatsApp : +33 6 60 95 51 51
@@ -71,8 +137,15 @@ Marcillat-en-Combraille, Terjat, Mazirat, Saint-Marcel-en-Marcillat, Ronnet, Lig
 
 ## Mots-clés (intent search)
 
-rénovation énergétique Allier, pompe à chaleur Marcillat-en-Combraille,
-climatisation Combraille, VMC double flux Allier, menuiseries extérieures 03,
-chauffe-eau thermodynamique Allier, maçonnerie Marcillat, joints de pierre Combraille,
-artisan RGE Allier, artisan QUALIPAC Allier, MaPrimeRénov' Combraille,
-rénovation maison ancienne pierre Auvergne, façade pierre Allier.
+entreprise rénovation tous corps d'état Allier, entreprise rénovation Combraille,
+rénovation complète Marcillat-en-Combraille, couvreur Marcillat-en-Combraille,
+couverture toiture Allier, menuisier Combraille, fenêtre PVC alu Allier,
+pompe à chaleur QualiPAC Combraille, climatiseur réversible Marcillat,
+placo plâtrier Allier, cloison BA13 Combraille, isolation combles Allier,
+isolation par l'extérieur Marcillat, maçon Combraille, création d'ouverture
+Marcillat, extension maison Allier, joints de pierre chaux Combraille,
+rejointoiement façade pierre Allier, VMC double flux Allier, chauffe-eau
+thermodynamique Allier, MaPrimeRénov' Combraille, MaPrimeRénov' Sérénité Allier,
+artisan RGE QualiPAC Allier, conception coordination rénovation Allier,
+maître d'œuvre rénovation Combraille, rénovation longère Auvergne, +2 Rénovation,
+Plus 2 Rénovation, Plus2 Rénovation, Plus de Rénovation Marcillat.

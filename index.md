@@ -1,42 +1,73 @@
-# +2 Rénovation — Artisan rénovation énergétique & maçonnerie · Marcillat-en-Combraille (03)
+# +2 Rénovation — Entreprise tous corps d'état · Marcillat-en-Combraille (03)
 
-> **Slogan** : De la maçonnerie au confort de votre habitat.
+> **Slogan** : Tous les corps d'état, une seule équipe.
 
-+2 Rénovation E.U.R.L est un artisan certifié **RGE** et **QUALIPAC** basé à
-**Marcillat-en-Combraille** (Allier 03), depuis 2018. L'entreprise accompagne
-particuliers et professionnels dans tous leurs projets de rénovation
-énergétique et de maçonnerie, dans un rayon d'environ 20 km autour de Marcillat.
++2 Rénovation E.U.R.L est une **entreprise de rénovation tous corps d'état**
+basée à **Marcillat-en-Combraille** (Allier 03), depuis 2018. Avec une équipe
+locale à taille humaine, nous prenons en charge votre projet de A à Z —
+**de la conception à la réception des clés**, dans un rayon d'environ
+20 km autour de Marcillat. Certifiée RGE QualiPAC, garantie décennale.
+
+## Le différenciateur — un seul interlocuteur
+
+Vous lancez une rénovation complète : toiture, isolation, fenêtres, PAC,
+plâtrerie ? La plupart des artisans locaux ne couvrent qu'**un seul corps
+d'état**. Vous devez alors coordonner 5 entreprises, 5 devis, 5 plannings,
+5 garanties décennales différentes — et c'est vous qui assumez les conflits
+de planning.
+
+**+2 Rénovation maîtrise 8 corps d'état** et propose en plus la conception
+et la coordination de projet. Un seul interlocuteur, un seul devis, un seul
+planning — et la garantie décennale couvre l'ensemble.
 
 ## Pourquoi nous choisir
 
-- **Artisan local** — basé à Marcillat-en-Combraille depuis 2018.
-- **Certifications RGE & QUALIPAC** — vous êtes éligible à MaPrimeRénov' et CEE.
-- **Sept expertises** sous un même toit — pompes à chaleur, climatisation, VMC, chauffe-eau thermodynamique, menuiseries extérieures, maçonnerie, joints de pierre.
+- **Entreprise tous corps d'état** — pas un simple artisan, une équipe.
+- **Conception + coordination** — maîtrise d'œuvre globale incluse.
+- **Certifications RGE & QualiPAC** — éligible MaPrimeRénov', MaPrimeRénov' Sérénité, CEE.
+- **Médaille d'Or régionale** — Meilleur Apprenti de France (Thomas Bucceri).
+- **20 km autour de Marcillat** — l'acteur local le plus complet.
 - **Garantie décennale** + SAV joignable.
 - **Devis gratuit sous 24h** + visite technique offerte.
 
-## Services
+## Nos 8 corps d'état + 1 service de coordination
 
-### Pompe à chaleur (RGE QUALIPAC)
-Air/eau, air/air, géothermique. Étude thermique offerte. Aides MaPrimeRénov' & CEE.
+### 🌟 Conception & coordination tous corps d'état
+Maîtrise d'œuvre globale : étude de faisabilité, conception, planning maître,
+exécution coordonnée, suivi hebdomadaire, garantie décennale couvrant
+l'ensemble du projet.
 
-### Climatisation réversible
-Splits, gainables, multi-zones. Confort été + chauffage mi-saison. Fluide R32.
+### 1. Couverture & zinguerie
+Réfection toiture, faîtage, gouttières et descentes en zinc. Tuiles plates,
+mécaniques, ardoises. Diagnostic charpente inclus.
 
-### VMC simple & double flux
-Évacuer l'humidité, renouveler l'air, récupérer jusqu'à 90 % des calories en double flux.
+### 2. Menuiseries extérieures
+Fenêtres, portes d'entrée, baies vitrées, volets roulants motorisés.
+PVC, aluminium ou bois. Double et triple vitrage.
 
-### Chauffe-eau thermodynamique
-200L à 300L. Jusqu'à 3× moins d'énergie qu'un cumulus classique.
+### 3. Pompe à chaleur & climatisation (RGE QualiPAC)
+PAC air/eau, air/air, géothermique. Climatisation réversible mono ou
+multi-split. Étude thermique offerte. Aides MaPrimeRénov' & CEE.
 
-### Menuiseries extérieures
-Fenêtres, portes, baies, volets — PVC, alu, bois. Triple vitrage disponible. Volets motorisés.
+### 4. Placo & cloisons
+Cloisons, doublages, faux plafonds, dressings. Plaques standard,
+hydrofuges, phoniques, ignifuges.
 
-### Maçonnerie traditionnelle
-Murs, ouvertures, dalles, escaliers, agrandissements. Pierre ou bloc.
+### 5. Isolation thermique
+Combles perdus, rampants, ITI, ITE, planchers. Laine de verre, ouate de
+cellulose, polyuréthane, fibre de bois.
 
-### Joints de pierre — à partir de 1700 €
-Rejointoiement à la chaux pour façades en pierre de Combraille. Mur respirant, beauté retrouvée.
+### 6. Maçonnerie
+Création d'ouvertures, dalles, chapes, escaliers, agrandissements,
+extensions complètes. Pierre ou parpaing.
+
+### 7. Joints de pierre — à partir de 1 700 €
+Rejointoiement à la chaux pour façades en pierre de Combraille. Mur
+respirant, beauté retrouvée.
+
+### 8. VMC & chauffe-eau thermodynamique
+VMC simple ou double flux haut rendement (récup 90 % calories). Ballon
+thermo 200-300 L : 3× moins d'énergie qu'un cumulus.
 
 ## Zone d'intervention
 
@@ -55,9 +86,15 @@ Néris-les-Bains, Montluçon.
 > pour nous demander qui a fait les façades ! »
 > **— Catherine M., Néris-les-Bains (Joints de pierre)**
 
+> « On a tout fait avec eux : toiture refaite, fenêtres triple vitrage,
+> isolation combles, PAC air/eau et placo. Un seul devis, un seul interlocuteur,
+> planning respecté à 4 jours près sur 5 mois de chantier. »
+> **— Laurent & Sophie, Mazirat (Rénovation complète tous corps d'état)**
+
 ## Contact
 
 - **Site** : https://www.plus2-renovation.fr/
-- **E-mail** : contact@plus2-renovation.fr
-- **Téléphone** : [à compléter]
-- **Adresse** : Marcillat-en-Combraille (03420), Allier
+- **Site Vercel** : https://plus2-renovation-site.vercel.app/
+- **E-mail** : plus2renovation@gmail.com
+- **Téléphone / WhatsApp** : 06 60 95 51 51
+- **Adresse** : Les Huttes Saint-Georges, 03420 Marcillat-en-Combraille, Allier
