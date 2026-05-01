@@ -1006,11 +1006,15 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
     margin: 0;
 }
 .cert-card p {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     line-height: 1.45;
     color: rgba(255, 255, 255, 0.85);
     font-family: var(--font-sans);
     margin: 0;
+}
+@media (max-width: 768px) {
+    .cert-card p { font-size: 0.85rem; }
+    .cert-card h3 { font-size: 0.95rem; }
 }
 
 /* === Couleurs natives par certification === */
@@ -2410,64 +2414,76 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
 }
 
 /* ==========================================================================
-   SECTION STACKING — Apple-like sticky stacked sections
-   Chaque section reste fixée 100vh, la suivante glisse par-dessus avec
-   border-radius top + shadow, z-index croissant. Le scroll devient un
-   "défilement de cartes empilées" cinématique.
+   SECTION STACKING — Cartes "empilées" en flow naturel
+   Chaque section a son propre fond, son top arrondi et une ombre supérieure
+   discrète : visuellement on garde l'effet "tiroir" qui glisse par-dessus la
+   précédente, sans piéger le scroll dans un sticky 100vh (qui tronquait les
+   sections plus hautes que le viewport et créait du vide sur les sections plus
+   courtes). Le scroll redevient fluide et toutes les cartes sont visibles.
    ========================================================================== */
 
 main#main {
-    /* Pas d'overflow hidden : la sticky a besoin du flow parent visible */
     position: relative;
     z-index: 0;
+    /* Léger overlap entre sections : la nouvelle section "monte" de 24px
+       par-dessus la précédente grâce au border-radius + box-shadow. */
+    isolation: isolate;
 }
 
-/* Toutes les sections directes du main deviennent sticky */
+/* Sections directes du main : flow naturel + décor d'empilement */
 main#main > section {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
+    position: relative;
     width: 100%;
     background-color: var(--paper);
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
-    /* Box-shadow allégée — l'ancienne (80px blur) faisait du paint cumulé. */
-    box-shadow: 0 -16px 36px -16px rgba(15, 26, 42, 0.14);
-    /* transform: scale() retiré — causait du jank sur les sections lourdes
-       (services 2412px, realisations 1238px) et du sub-pixel rendering sur le
-       texte. L'effet "tiroirs empilés" reste via border-radius + box-shadow + z-index. */
-    /* Isolation paint pour empêcher reflow cascading entre sections sticky */
-    contain: layout style paint;
+    box-shadow: 0 -14px 32px -14px rgba(15, 26, 42, 0.18);
+    /* Léger overlap pour que le coin arrondi vienne "mordre" sur la précédente */
+    margin-top: -24px;
 }
 
-/* Overflow hidden seulement sur les sections où c'est cohérent visuellement */
-main#main > .hero,
-main#main > .trust-strip,
-main#main > #realisations {
+/* Hero en première position : pas d'overlap ni de radius */
+main#main > .hero {
+    margin-top: 0;
+    background-color: var(--ink);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
     overflow: hidden;
 }
 
-/* Z-index croissant — section N+1 passe par-dessus N */
+/* Trust-strip : bandeau compact entre hero et services */
+main#main > .trust-strip {
+    background-color: var(--ink);
+    border-radius: 0 0 32px 32px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0 24px 48px -20px rgba(15, 26, 42, 0.30);
+    margin-top: 0;
+    overflow: hidden;
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+    z-index: 2;
+}
+/* La section juste après la trust-strip retrouve son arrondi haut */
+main#main > .trust-strip + section {
+    margin-top: -32px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+}
+
+/* Z-index croissant — section N+1 passe visuellement par-dessus N */
 main#main > .hero { z-index: 1; }
 main#main > .trust-strip { z-index: 2; }
 main#main > #services { z-index: 3; }
 main#main > #fondateur { z-index: 4; }
-main#main > #realisations { z-index: 5; }
+main#main > #realisations { z-index: 5; overflow: hidden; }
 main#main > #processus { z-index: 6; }
 main#main > #zone { z-index: 7; }
 main#main > #avis { z-index: 8; }
 main#main > .faq { z-index: 9; }
 main#main > #contact { z-index: 10; }
 
-/* Le hero garde son fond sombre cohérent */
-main#main > .hero {
-    background-color: var(--ink);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    box-shadow: none;
-}
-
-/* Sections sombres : fond opaque maintenu */
+/* Sections thématiques : fond opaque maintenu */
 main#main > .section-dark {
     background-color: var(--ink);
 }
@@ -2475,78 +2491,32 @@ main#main > .section-soft {
     background-color: var(--paper-alt);
 }
 
-/* Trust strip : compacte, centrée verticalement avec son min-height */
-main#main > .trust-strip {
-    background-color: var(--ink);
-    display: flex;
-    align-items: center;
-    border-radius: 0 0 32px 32px;
-    box-shadow: 0 30px 80px -20px rgba(15, 26, 42, 0.25);
-    /* Cette bande est haute (100vh) mais le contenu reste centré */
-}
-main#main > .trust-strip + section {
-    border-top-left-radius: 32px;
-    border-top-right-radius: 32px;
-}
-
-/* Le follow-strip et le footer-wrapper qui suivent restent en flow normal */
+/* Follow-strip + footer en flow normal avec même empilement décoratif */
 .follow-strip {
     position: relative;
     z-index: 11;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
-    box-shadow: 0 -30px 80px -20px rgba(15, 26, 42, 0.20);
-    margin-top: 0;
+    box-shadow: 0 -14px 32px -14px rgba(15, 26, 42, 0.22);
+    margin-top: -24px;
 }
 .cinematic-footer-wrapper {
     z-index: 12;
+    margin-top: -24px;
 }
 
-/* Padding interne adapté pour centrage vertical en mode sticky */
-main#main > section.section,
-main#main > .services,
-main#main > .realisations,
-main#main > .founder,
-main#main > .process,
-main#main > .zone,
-main#main > .reviews,
-main#main > .faq,
-main#main > .contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-main#main > .trust-strip {
-    padding: 0;
-}
-
-/* Désactive le stacking sur mobile pour éviter le scroll-trap */
+/* Mobile : on retire l'overlap et les rayons trop appuyés pour rester sobre */
 @media (max-width: 768px) {
-    main#main > section {
-        position: relative;
-        min-height: auto;
+    main#main > section,
+    main#main > .trust-strip + section,
+    .follow-strip,
+    .cinematic-footer-wrapper {
+        margin-top: 0;
         border-radius: 0;
         box-shadow: none;
-    }
-    main#main > section.section {
-        display: block;
     }
     main#main > .trust-strip {
         border-radius: 0;
-        box-shadow: none;
-    }
-    .follow-strip {
-        border-radius: 0;
-        box-shadow: none;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    main#main > section {
-        position: relative;
-        min-height: auto;
-        transform: none;
     }
 }
 
@@ -3057,3 +3027,207 @@ main#main > .trust-strip {
     .fab span { display: none; }
     .fab { padding: 1rem; border-radius: 50%; }
 }
+
+/* ==========================================================================
+   MOBILE OPTIMIZATIONS — typography, tap targets, spacing, perf
+   Cible WCAG 2.5.5 Target Size (44×44 min) + lisibilité body ≥ 14px.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* ---- Tap targets ≥ 44×44 (WCAG AAA) ---- */
+    .header-phone,
+    .header-whatsapp {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+    .burger {
+        width: 44px;
+        height: 44px;
+    }
+    .burger span:nth-child(1) { top: 15px; }
+    .burger span:nth-child(2) { top: 21px; }
+    .burger span:nth-child(3) { top: 27px; }
+    body.nav-open .burger span:nth-child(1),
+    body.nav-open .burger span:nth-child(3) { top: 21px; }
+
+    .service-link,
+    .footer-pill,
+    .nav-link,
+    .contact-channel,
+    .follow-card {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .service-link { padding-block: 0.75rem; }
+
+    /* ---- Lisibilité : remonter les textes < 12px ---- */
+    .service-list li,
+    .service-tag,
+    .footer-craft,
+    .nav-tag,
+    .brand-tagline,
+    .map-legend,
+    .founder-badge span {
+        font-size: 0.85rem;        /* ≈ 13.6px — lisible sans zoom */
+        line-height: 1.45;
+    }
+    .service-list li {
+        padding: 0.4rem 0;
+    }
+
+    /* ---- Réduire le padding vertical des sections sur mobile ---- */
+    .section {
+        padding: clamp(2.5rem, 8vw, 4rem) 0;
+    }
+
+    /* ---- Hero : compactification ---- */
+    .hero {
+        min-height: auto;
+        padding-block: clamp(2rem, 8vw, 3rem) clamp(2.5rem, 10vw, 4rem);
+    }
+    .hero-carousel {
+        /* Carousel 3D reste visible mais mieux dimensionné */
+        height: clamp(180px, 38vw, 240px) !important;
+        margin-block: 1rem;
+    }
+    .hero-card {
+        width: clamp(110px, 28vw, 160px);
+        height: clamp(140px, 36vw, 200px);
+    }
+    .hero-title {
+        font-size: clamp(2rem, 8.5vw, 2.75rem);
+        line-height: 1.05;
+    }
+    .hero-lead {
+        font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+        line-height: 1.55;
+    }
+
+    /* ---- Container : marges latérales un peu réduites ---- */
+    .container {
+        padding-inline: 1.1rem;
+    }
+
+    /* ---- Section header : centrage + tailles adaptées ---- */
+    .section-header {
+        margin-bottom: 2rem;
+        padding-inline: 0.25rem;
+    }
+    .section-title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        line-height: 1.1;
+    }
+    .section-lead {
+        font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+        line-height: 1.55;
+    }
+    .section-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+    }
+
+    /* ---- Cartes services : ombres + scale-up legèrement plus visibles ---- */
+    .service-card { border-radius: 18px; }
+    .service-card .service-body { padding: 1.25rem; }
+    .service-card h3 {
+        font-size: 1.15rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+    .service-card .service-body > p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* ---- Galerie réalisations : grille 2 colonnes au lieu de 1 sur > 480px ---- */
+    .frame-grid {
+        gap: 0.75rem !important;
+    }
+
+    /* ---- Footer : compactification ---- */
+    .cinematic-footer-wrapper {
+        height: auto;
+        min-height: auto;
+    }
+    .cinematic-footer {
+        position: relative;
+        height: auto;
+        min-height: auto;
+        padding-block: 3.5rem 2.5rem;
+    }
+    .footer-headline {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        line-height: 1.1;
+    }
+    .footer-giant-text {
+        display: none;        /* Texte parallax inutile sur mobile, gain perf */
+    }
+    .footer-marquee {
+        font-size: 0.8rem;
+    }
+
+    /* ---- FAB : ne pas chevaucher le footer-totop ---- */
+    .fab {
+        bottom: 1rem;
+        right: 1rem;
+        width: 52px;
+        height: 52px;
+    }
+
+    /* ---- Carousels 3D : ralentir + désactiver perspective souris (pas de souris) ---- */
+    .hero-carousel,
+    .cert-carousel {
+        --perspective-x: 0deg !important;
+        --perspective-y: 0deg !important;
+    }
+
+    /* ---- Tableau zone : désempiler proprement ---- */
+    .zone-grid,
+    .process-grid,
+    .reviews-grid,
+    .contact-grid,
+    .faq-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+}
+
+/* ---- Mobile étroit (< 480px) : ajustements ultra-compacts ---- */
+@media (max-width: 480px) {
+    .header-inner {
+        padding-block: 0.65rem;
+    }
+    .brand-logo { height: 34px; }
+    .header-actions { gap: 0.4rem; }
+
+    .container { padding-inline: 1rem; }
+
+    .hero-eyebrow {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.85rem;
+    }
+    .hero-feature {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Cartes hero feature : 2 sur la ligne */
+    .feature-pill {
+        flex: 1 1 calc(50% - 0.25rem);
+        font-size: 0.8rem;
+    }
+
+    .section-title { font-size: clamp(1.55rem, 7.5vw, 2rem); }
+}
+
+/* ---- Tablette (601-1024px) : équilibrage colonnes ---- */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .container { padding-inline: 2rem; }
+}
+
