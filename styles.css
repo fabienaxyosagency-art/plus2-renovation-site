@@ -3600,8 +3600,8 @@ main#main > .hero-features-strip + .trust-strip {
         opacity: 0;
         transition: none;
     }
-    .hero-cinema-photo[data-photo="5"] {
-        opacity: 1;        /* Affiche directement la photo finale (loft) */
+    .hero-cinema-photo[data-photo="4"] {
+        opacity: 1;        /* Affiche directement la photo finale (loft réalisé) */
     }
     .hero-cinema-photo img {
         transform: none;
