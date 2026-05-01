@@ -377,15 +377,68 @@
         }
     }
 
-    // Carousel hero (8 photos chantiers)
-    init3DOrbit(document.getElementById('heroCarousel'), {
-        cardSelector: '.hero-card',
-        speed: 0.18,
-        flatness: 0.55,
-        radiusFactor: 0.28,
-        minRadius: 110,
-        maxRadius: 240,
-    });
+    // Hero cinéma : scroll-driven crossfade entre 6 photos chantier
+    // (init3DOrbit ancien hero retiré — remplacé par hero-cinema)
+    (function initHeroCinema() {
+        const section = document.getElementById('heroCinema');
+        if (!section) return;
+        const photos = Array.from(section.querySelectorAll('.hero-cinema-photo'));
+        const titleTop = section.querySelector('.hero-cinema-title-top');
+        const titleBot = section.querySelector('.hero-cinema-title-bottom');
+        const center = section.querySelector('.hero-cinema-center');
+        const ticks = Array.from(section.querySelectorAll('.hero-cinema-tick'));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!photos.length || reduceMotion) return;
+
+        const N = photos.length;
+        let lastActive = 0;
+
+        const onHeroScroll = () => {
+            const rect = section.getBoundingClientRect();
+            const vh = window.innerHeight;
+            // Bail si la section est complètement hors champ
+            if (rect.top > vh || rect.bottom < 0) return;
+
+            // Progress 0→1 sur toute la durée du scroll dans la section
+            const total = section.offsetHeight - vh;
+            const scrolled = -rect.top;
+            const progress = Math.max(0, Math.min(1, scrolled / total));
+
+            // Mapping : photos changent entre 5% et 90% de la progression
+            const photoProgress = Math.max(0, Math.min(1, (progress - 0.05) / 0.85));
+            const activeIndex = Math.min(N - 1, Math.floor(photoProgress * N));
+
+            if (activeIndex !== lastActive) {
+                photos.forEach((p, i) => {
+                    p.style.opacity = i === activeIndex ? '1' : '0';
+                });
+                ticks.forEach((t, i) => {
+                    t.classList.toggle('is-active', i === activeIndex);
+                    t.classList.toggle('is-passed', i < activeIndex);
+                });
+                lastActive = activeIndex;
+            }
+
+            // Ken Burns : zoom progressif de la photo active (1.04 → 1.18)
+            const localProgress = (photoProgress * N) - activeIndex;
+            const scale = 1.04 + localProgress * 0.14;
+            const activePhoto = photos[activeIndex]?.querySelector('img');
+            if (activePhoto) activePhoto.style.transform = `scale(${scale.toFixed(3)})`;
+
+            // Split titles : écartement progressif au scroll
+            const splitProgress = Math.max(0, Math.min(1, (progress - 0.10) / 0.50));
+            const splitDistance = splitProgress * (window.innerWidth < 768 ? 35 : 28);
+            if (titleTop) titleTop.style.transform = `translate3d(-${splitDistance}vw, 0, 0)`;
+            if (titleBot) titleBot.style.transform = `translate3d(${splitDistance}vw, 0, 0)`;
+
+            // Center : fade-out progressif vers la fin (le loft prend toute la place)
+            const fadeProgress = Math.max(0, Math.min(1, (progress - 0.55) / 0.30));
+            if (center) center.style.opacity = String(1 - fadeProgress);
+        };
+
+        registerScrollHandler(onHeroScroll);
+        onHeroScroll();
+    })();
 
     // Carousel certifications (7 cartes — un peu plus lent + orbite plus aplatie)
     init3DOrbit(document.getElementById('certCarousel'), {

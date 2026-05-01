@@ -3250,3 +3250,367 @@ main#main > .section-soft {
     .container { padding-inline: 2rem; }
 }
 
+/* ==========================================================================
+   HERO CINÉMA — Scroll-driven photo scrub (story chantier "longère → loft")
+   Architecture : section haute (320vh) qui contient un pin sticky 100vh.
+   La progression du scroll déclenche : crossfade entre 6 photos +
+   Ken Burns (zoom progressif) + écartement des titres top/bottom.
+   ========================================================================== */
+
+main#main > .hero.hero-cinema {
+    /* Override du flex-center du hero générique : on a besoin d'une section haute */
+    display: block;
+    align-items: stretch;
+    padding: 0;
+    height: 320vh;          /* Runway de scroll : 1 hero visible + 2.2vh pour le scrub */
+    min-height: 320vh;
+    background: var(--ink);
+    overflow: visible;
+    contain: paint;
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #fff;
+}
+
+/* Pin sticky 100vh à l'intérieur de la section haute */
+.hero-cinema-pin {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* === Stack des 6 photos en background, crossfade scroll-driven === */
+.hero-cinema-stack {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+.hero-cinema-photo {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+.hero-cinema-photo[data-photo="0"] { opacity: 1; }       /* Photo de départ visible */
+.hero-cinema-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--photo-scale, 1.04));
+    transform-origin: center 60%;
+    transition: transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* === Voiles de lisibilité === */
+.hero-cinema-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg,
+            rgba(15, 26, 42, 0.55) 0%,
+            rgba(15, 26, 42, 0.35) 30%,
+            rgba(15, 26, 42, 0.45) 60%,
+            rgba(15, 26, 42, 0.85) 100%);
+    pointer-events: none;
+}
+.hero-cinema-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(ellipse at center,
+            transparent 35%,
+            rgba(15, 26, 42, 0.25) 70%,
+            rgba(15, 26, 42, 0.65) 100%);
+    pointer-events: none;
+}
+
+/* === Contenu central avec titres top/bottom === */
+.hero-cinema-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: clamp(80px, 12vh, 130px) clamp(1rem, 4vw, 3rem) clamp(60px, 8vh, 100px);
+    gap: clamp(1rem, 2vh, 2rem);
+    text-align: center;
+}
+
+/* === Titres top/bottom (effet split au scroll) === */
+.hero-cinema-title-top,
+.hero-cinema-title-bottom {
+    margin: 0;
+    font-family: var(--font-utility);
+    font-weight: 900;
+    font-size: clamp(2.75rem, 9vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+    transform: translate3d(var(--title-offset, 0px), 0, 0);
+    will-change: transform, opacity;
+    transition: transform 200ms linear;
+    align-self: end;
+}
+.hero-cinema-title-bottom {
+    align-self: start;
+}
+.hero-cinema-title-top em,
+.hero-cinema-title-bottom em {
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--teal-light);
+    background: linear-gradient(135deg, #4ECFC4, #1FB5A8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* === Bloc central (eyebrow + lead + CTA) === */
+.hero-cinema-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: min(90vw, 720px);
+    transition: opacity 300ms ease, transform 300ms ease;
+    opacity: var(--center-opacity, 1);
+}
+
+.hero-cinema-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    background: rgba(15, 26, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    font-family: var(--font-utility);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.92);
+    text-transform: uppercase;
+}
+.hero-cinema-eyebrow .eyebrow-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 12px rgba(31, 181, 168, 0.7);
+    animation: heroPulse 2.5s ease-in-out infinite;
+}
+
+.hero-cinema-lead {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 560px;
+    margin: 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+.hero-cinema-lead strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.hero-cinema-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+/* === Indicateur scroll en bas === */
+.hero-cinema-scroll {
+    position: absolute;
+    bottom: clamp(1.5rem, 4vh, 2.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 99px;
+    background: rgba(15, 26, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-utility);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all var(--t) var(--ease);
+    animation: heroScrollBob 2.4s ease-in-out infinite;
+}
+.hero-cinema-scroll:hover {
+    color: #fff;
+    background: rgba(31, 181, 168, 0.25);
+    border-color: rgba(31, 181, 168, 0.45);
+}
+.hero-cinema-scroll svg {
+    width: 14px;
+    height: 14px;
+}
+@keyframes heroScrollBob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, -4px); }
+}
+
+/* === Timeline visuelle (6 ticks à droite) === */
+.hero-cinema-timeline {
+    position: absolute;
+    right: clamp(1rem, 2.5vw, 2rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 6px;
+    border-radius: 99px;
+    background: rgba(15, 26, 42, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.hero-cinema-tick {
+    width: 4px;
+    height: 18px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    transition: background 250ms ease, transform 250ms ease;
+}
+.hero-cinema-tick.is-active {
+    background: var(--teal);
+    transform: scaleY(1.25);
+    box-shadow: 0 0 12px rgba(31, 181, 168, 0.6);
+}
+.hero-cinema-tick.is-passed {
+    background: rgba(31, 181, 168, 0.55);
+}
+
+/* === Pulse animation === */
+@keyframes heroPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* === BANDEAU FEATURES — sous le hero, transition douce === */
+.hero-features-strip {
+    background: var(--ink);
+    padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4rem);
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+main#main > .hero-features-strip {
+    margin-top: 0;
+    background: var(--ink);
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 2;
+}
+
+main#main > .hero-features-strip + .trust-strip {
+    margin-top: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.hero-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+/* === MOBILE / RESPONSIVE — désactiver le scrub coûteux + simplifier === */
+@media (max-width: 768px) {
+    main#main > .hero.hero-cinema {
+        height: 240vh;     /* Scroll runway plus court sur mobile */
+        min-height: 240vh;
+    }
+    .hero-cinema-content {
+        grid-template-rows: auto auto auto;
+        gap: clamp(1.25rem, 3vh, 2rem);
+        padding: clamp(80px, 14vh, 110px) 1.1rem clamp(80px, 12vh, 110px);
+    }
+    .hero-cinema-title-top,
+    .hero-cinema-title-bottom {
+        font-size: clamp(2.5rem, 11vw, 4.5rem);
+        line-height: 0.95;
+    }
+    .hero-cinema-eyebrow {
+        font-size: 0.7rem;
+        padding: 0.45rem 0.85rem;
+    }
+    .hero-cinema-lead {
+        font-size: 0.95rem;
+    }
+    .hero-cinema-timeline {
+        right: 0.5rem;
+        padding: 8px 4px;
+        gap: 6px;
+    }
+    .hero-cinema-tick {
+        width: 3px;
+        height: 14px;
+    }
+    .hero-cinema-cta {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .hero-cinema-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* === REDUCE MOTION — montre la photo finale, pas d'animations === */
+@media (prefers-reduced-motion: reduce) {
+    main#main > .hero.hero-cinema {
+        height: 100vh;
+        min-height: 100vh;
+    }
+    .hero-cinema-pin {
+        position: relative;
+        height: 100vh;
+    }
+    .hero-cinema-photo {
+        opacity: 0;
+        transition: none;
+    }
+    .hero-cinema-photo[data-photo="5"] {
+        opacity: 1;        /* Affiche directement la photo finale (loft) */
+    }
+    .hero-cinema-photo img {
+        transform: none;
+        transition: none;
+    }
+    .hero-cinema-title-top,
+    .hero-cinema-title-bottom {
+        transform: none;
+        transition: none;
+    }
+}
+
