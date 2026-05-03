@@ -7,3 +7,6 @@
 node_modules/
 *.log
 Thumbs.db
+
+# Originaux non-optimisés des photos chantiers
+assets/realisations/_originals/

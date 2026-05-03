@@ -568,4 +568,109 @@
         if (ctaBtn) ctaBtn.addEventListener('click', activate);
     })();
 
+    // ========== RÉALISATIONS — slider COMPARE (avant/après) ==========
+    (function initCompareSliders() {
+        const cells = document.querySelectorAll('.frame-cell--compare');
+        if (!cells.length) return;
+
+        cells.forEach((cell) => {
+            const compare = cell.querySelector('.frame-compare');
+            if (!compare) return;
+
+            const setSplit = (clientX) => {
+                const rect = compare.getBoundingClientRect();
+                const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+                compare.style.setProperty('--split', `${(pct * 100).toFixed(2)}%`);
+                compare.style.setProperty('--split-pct', pct.toFixed(3));
+            };
+
+            cell.addEventListener('mousemove', (e) => {
+                if (!cell.matches(':hover')) return;
+                setSplit(e.clientX);
+            }, { passive: true });
+
+            cell.addEventListener('mouseenter', (e) => {
+                setSplit(e.clientX);
+            });
+
+            // Touch — un tap toggle entre avant et après
+            cell.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                cell.classList.add('is-touched');
+                if (e.touches[0]) setSplit(e.touches[0].clientX);
+            }, { passive: false });
+            cell.addEventListener('touchmove', (e) => {
+                if (e.touches[0]) setSplit(e.touches[0].clientX);
+            }, { passive: true });
+            cell.addEventListener('touchend', () => {
+                setTimeout(() => cell.classList.remove('is-touched'), 2500);
+            });
+
+            // Clavier — flèches gauche/droite pour ajuster
+            cell.addEventListener('keydown', (e) => {
+                const compareEl = cell.querySelector('.frame-compare');
+                if (!compareEl) return;
+                const current = parseFloat(getComputedStyle(compareEl).getPropertyValue('--split-pct')) || 0.5;
+                let next = current;
+                if (e.key === 'ArrowLeft') next = Math.max(0, current - 0.1);
+                else if (e.key === 'ArrowRight') next = Math.min(1, current + 0.1);
+                else return;
+                e.preventDefault();
+                cell.classList.add('is-touched');
+                compareEl.style.setProperty('--split', `${(next * 100).toFixed(2)}%`);
+                compareEl.style.setProperty('--split-pct', next.toFixed(3));
+            });
+
+            // Position initiale au repos = 50% (utilisée quand on hover sans bouger)
+            compare.style.setProperty('--split', '50%');
+            compare.style.setProperty('--split-pct', '0.5');
+        });
+    })();
+
+    // ========== RÉALISATIONS — CAROUSEL (3 photos qui tournent au survol) ==========
+    (function initCarousels() {
+        const cells = document.querySelectorAll('.frame-cell--carousel');
+        if (!cells.length) return;
+
+        cells.forEach((cell) => {
+            const slides = cell.querySelectorAll('.frame-carousel-img');
+            const dots = cell.querySelectorAll('.frame-carousel-dot');
+            if (slides.length < 2) return;
+
+            let idx = 0;
+            let interval = null;
+
+            const goTo = (i) => {
+                idx = (i + slides.length) % slides.length;
+                slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+                dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
+            };
+
+            const start = () => {
+                stop();
+                interval = setInterval(() => goTo(idx + 1), 2200);
+            };
+            const stop = () => {
+                if (interval) { clearInterval(interval); interval = null; }
+            };
+
+            cell.addEventListener('mouseenter', start);
+            cell.addEventListener('focus', start);
+            cell.addEventListener('mouseleave', () => { stop(); goTo(0); });
+            cell.addEventListener('blur', () => { stop(); goTo(0); });
+
+            // Mobile : auto-play permanent en boucle plus lente
+            if (window.matchMedia('(max-width: 700px)').matches) {
+                interval = setInterval(() => goTo(idx + 1), 3500);
+            }
+
+            // Tap pour avancer manuellement sur mobile
+            cell.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    goTo(idx + 1);
+                }
+            }, { passive: true });
+        });
+    })();
+
 })();

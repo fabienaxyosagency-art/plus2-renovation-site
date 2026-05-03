@@ -1453,6 +1453,198 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
     font-family: var(--font-utility);
 }
 
+/* ==========================================================================
+   FRAME-CELL — mode COMPARE (avant/après slider)
+   ========================================================================== */
+.frame-compare {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    --split: 50%;
+}
+.frame-compare img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transition: transform 0.5s var(--ease), filter 0.4s var(--ease);
+    filter: brightness(0.92) saturate(0.95);
+}
+.frame-cell:hover .frame-compare img,
+.frame-cell:focus-visible .frame-compare img {
+    transform: scale(1.04);
+    filter: brightness(1.02) saturate(1.05);
+}
+.frame-compare-after {
+    z-index: 1;
+}
+.frame-compare-before-wrap {
+    position: absolute;
+    inset: 0;
+    width: var(--split);
+    overflow: hidden;
+    z-index: 2;
+    transition: width 0.6s var(--ease);
+    will-change: width;
+}
+.frame-compare-before-wrap .frame-compare-before {
+    width: calc(100% / var(--split-pct, 0.5));
+    min-width: 100%;
+}
+/* Repos : volet avant rétracté (uniquement après visible) */
+.frame-cell--compare:not(:hover):not(:focus-visible):not(.is-touched) .frame-compare-before-wrap {
+    width: 0;
+}
+/* Hover : volet à 50% par défaut, JS prend le relais ensuite */
+.frame-cell--compare:hover .frame-compare-before-wrap,
+.frame-cell--compare:focus-visible .frame-compare-before-wrap,
+.frame-cell--compare.is-touched .frame-compare-before-wrap {
+    width: var(--split);
+}
+
+/* Barre verticale + poignée */
+.frame-compare-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--split);
+    width: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.45);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.3s var(--ease);
+}
+.frame-cell--compare:hover .frame-compare-divider,
+.frame-cell--compare:focus-visible .frame-compare-divider,
+.frame-cell--compare.is-touched .frame-compare-divider {
+    opacity: 1;
+}
+.frame-compare-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.95);
+    pointer-events: none;
+    transition: transform 0.3s var(--ease);
+}
+.frame-cell--compare:hover .frame-compare-handle {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Tags Avant / Après */
+.frame-compare-tag {
+    position: absolute;
+    top: 12px;
+    z-index: 3;
+    padding: 0.32rem 0.65rem;
+    background: rgba(15, 26, 42, 0.78);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #fff;
+    border-radius: 999px;
+    font-family: var(--font-utility);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease) 0.15s, transform 0.3s var(--ease) 0.15s;
+    transform: translateY(-4px);
+}
+.frame-compare-tag-before { left: 12px; }
+.frame-compare-tag-after { right: 12px; background: var(--accent); }
+.frame-cell--compare:hover .frame-compare-tag,
+.frame-cell--compare:focus-visible .frame-compare-tag,
+.frame-cell--compare.is-touched .frame-compare-tag {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   FRAME-CELL — mode CAROUSEL (3 photos)
+   ========================================================================== */
+.frame-carousel {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+.frame-carousel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), filter 0.4s var(--ease);
+    filter: brightness(0.92) saturate(0.95);
+    pointer-events: none;
+    transform: scale(1.02);
+}
+.frame-carousel-img.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+.frame-cell:hover .frame-carousel-img.is-active,
+.frame-cell:focus-visible .frame-carousel-img.is-active {
+    transform: scale(1.06);
+    filter: brightness(1.05) saturate(1.1);
+}
+.frame-carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 4;
+    display: flex;
+    gap: 5px;
+    padding: 5px 8px;
+    background: rgba(15, 26, 42, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 999px;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+}
+.frame-cell:hover .frame-carousel-dots,
+.frame-cell:focus-visible .frame-carousel-dots {
+    opacity: 1;
+}
+.frame-carousel-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: background 0.3s var(--ease), width 0.3s var(--ease);
+}
+.frame-carousel-dot.is-active {
+    background: var(--accent);
+    width: 16px;
+    border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+    .frame-cell--compare .frame-compare-before-wrap { width: var(--split, 50%); }
+    .frame-cell--compare .frame-compare-divider { opacity: 1; }
+    .frame-cell--compare .frame-compare-tag { opacity: 1; transform: none; }
+    .frame-carousel-dots { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .frame-compare-before-wrap, .frame-carousel-img { transition: none; }
+}
+
 /* Responsive : sur mobile, désactiver l'effet expanding et passer en grille classique */
 @media (max-width: 700px) {
     .frame-grid {
