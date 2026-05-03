@@ -941,35 +941,50 @@
             </div>
             <a href="#contact" class="btn btn-secondary">Vérifier ma commune</a>
         </div>
-        <div class="zone-map reveal" style="--delay:120ms" aria-hidden="true">
+        <div class="zone-map reveal" style="--delay:120ms">
             <div class="map-frame">
-                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <iframe
+                    class="map-iframe"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=2.35%2C46.10%2C2.92%2C46.45&amp;layer=mapnik&amp;marker=46.2706%2C2.6372"
+                    title="Zone d'intervention +2 Rénovation autour de Marcillat-en-Combraille"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    aria-label="Carte interactive centrée sur Marcillat-en-Combraille"></iframe>
+
+                <svg class="map-pins-overlay" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
-                        <radialGradient id="mapGrad" cx="50%" cy="50%" r="55%">
-                            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18"/>
-                            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                        <radialGradient id="mapGradOver" cx="50%" cy="50%" r="55%">
+                            <stop offset="60%" stop-color="var(--accent)" stop-opacity="0"/>
+                            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.08"/>
                         </radialGradient>
                     </defs>
-                    <circle cx="200" cy="200" r="180" fill="url(#mapGrad)"/>
-                    <circle cx="200" cy="200" r="160" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3 6"/>
-                    <circle cx="200" cy="200" r="110" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="3 6"/>
-                    <circle cx="200" cy="200" r="60" stroke="currentColor" stroke-opacity="0.18" stroke-dasharray="3 6"/>
+                    <circle cx="200" cy="200" r="180" fill="url(#mapGradOver)"/>
+                    <circle cx="200" cy="200" r="155" stroke="var(--accent)" stroke-opacity="0.35" stroke-dasharray="4 6" stroke-width="1.2"/>
                     <g class="map-pin map-pin-center">
-                        <circle cx="200" cy="200" r="8" fill="var(--accent)"/>
-                        <circle cx="200" cy="200" r="14" stroke="var(--accent)" stroke-opacity="0.5"/>
+                        <circle cx="200" cy="200" r="9" fill="var(--accent)"/>
+                        <circle cx="200" cy="200" r="14" stroke="var(--accent)" stroke-opacity="0.55"/>
                     </g>
                     <g class="map-pins">
-                        <circle cx="240" cy="140" r="5" fill="var(--teal)"/>
-                        <circle cx="270" cy="220" r="5" fill="var(--teal)"/>
-                        <circle cx="160" cy="260" r="5" fill="var(--teal)"/>
-                        <circle cx="120" cy="180" r="5" fill="var(--teal)"/>
-                        <circle cx="220" cy="290" r="5" fill="var(--teal)"/>
-                        <circle cx="290" cy="170" r="5" fill="var(--teal)"/>
-                        <circle cx="140" cy="120" r="5" fill="var(--teal)"/>
+                        <circle cx="161" cy="222" r="5" fill="var(--teal)"><title>Terjat</title></circle>
+                        <circle cx="135" cy="162" r="5" fill="var(--teal)"><title>Mazirat</title></circle>
+                        <circle cx="178" cy="200" r="5" fill="var(--teal)"><title>Saint-Marcel-en-Marcillat</title></circle>
+                        <circle cx="212" cy="243" r="5" fill="var(--teal)"><title>Ronnet</title></circle>
+                        <circle cx="157" cy="149" r="5" fill="var(--teal)"><title>Lignerolles</title></circle>
+                        <circle cx="182" cy="151" r="5" fill="var(--teal)"><title>Saint-Fargeol</title></circle>
+                        <circle cx="238" cy="282" r="5" fill="var(--teal)"><title>Arpheuilles-Saint-Priest</title></circle>
+                        <circle cx="232" cy="132" r="5" fill="var(--teal)"><title>Villebret</title></circle>
+                        <circle cx="213" cy="150" r="5" fill="var(--teal)"><title>Hyds</title></circle>
+                        <circle cx="221" cy="179" r="5" fill="var(--teal)"><title>Néris-les-Bains</title></circle>
+                        <circle cx="184" cy="111" r="5" fill="var(--teal)"><title>Montluçon</title></circle>
                     </g>
-                    <text x="200" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="currentColor">MARCILLAT</text>
-                    <text x="200" y="225" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="currentColor" opacity="0.6">~20 km</text>
+                    <text x="200" y="183" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="var(--ink)">MARCILLAT</text>
+                    <text x="200" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="var(--ink)" opacity="0.65">~20 km</text>
                 </svg>
+
+                <a href="https://www.google.com/maps/place/Marcillat-en-Combraille/@46.2706,2.6372,11z" target="_blank" rel="noopener" class="map-open-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    Ouvrir dans Google Maps
+                </a>
             </div>
         </div>
     </div>
