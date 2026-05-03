@@ -537,4 +537,31 @@
         }, { passive: true });
     }
 
+    // ========== ZONE MAP — preview cliquable → iframe interactif ==========
+    (function initZoneMapActivation() {
+        const frame = document.getElementById('mapFrame');
+        const previewBtn = document.getElementById('mapPreviewBtn');
+        const iframe = document.getElementById('mapIframe');
+        if (!frame || !previewBtn || !iframe) return;
+
+        const activate = () => {
+            if (frame.classList.contains('is-active')) return;
+            // Lazy-load de l'iframe seulement à la demande
+            if (iframe.dataset.src && !iframe.src) {
+                iframe.src = iframe.dataset.src;
+            }
+            frame.classList.add('is-active');
+            // Focus sur l'iframe pour l'interaction clavier
+            setTimeout(() => iframe.focus(), 600);
+        };
+
+        previewBtn.addEventListener('click', activate);
+        previewBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                activate();
+            }
+        });
+    })();
+
 })();

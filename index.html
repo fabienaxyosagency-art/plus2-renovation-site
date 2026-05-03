@@ -942,24 +942,119 @@
             <a href="#contact" class="btn btn-secondary">Vérifier ma commune</a>
         </div>
         <div class="zone-map reveal" style="--delay:120ms">
-            <div class="map-frame">
+            <div class="map-frame" id="mapFrame">
+
+                <!-- État aesthetic statique (avant clic) — gradient navy + topographie + pins villes intégrés -->
+                <button type="button" class="map-preview" id="mapPreviewBtn" aria-label="Activer la carte interactive de la zone d'intervention">
+                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="map-preview-svg" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="mapBg" cx="50%" cy="50%" r="60%">
+                                <stop offset="0%" stop-color="#1A2D4A"/>
+                                <stop offset="50%" stop-color="#142339"/>
+                                <stop offset="100%" stop-color="#0B1422"/>
+                            </radialGradient>
+                            <radialGradient id="mapAurora" cx="50%" cy="50%" r="55%">
+                                <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.18"/>
+                                <stop offset="60%" stop-color="var(--accent)" stop-opacity="0.10"/>
+                                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                            </radialGradient>
+                            <linearGradient id="ctaGrad" x1="0%" x2="100%">
+                                <stop offset="0%" stop-color="#fff"/>
+                                <stop offset="100%" stop-color="#F4F7FB"/>
+                            </linearGradient>
+                            <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="2"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Fond navy -->
+                        <rect width="400" height="400" fill="url(#mapBg)"/>
+
+                        <!-- Halo orange/teal -->
+                        <rect width="400" height="400" fill="url(#mapAurora)"/>
+
+                        <!-- Courbes topographiques stylisées -->
+                        <g opacity="0.22" stroke="var(--teal)" fill="none" stroke-width="0.6" stroke-linecap="round">
+                            <path d="M 20,260 Q 110,210 200,235 T 380,215"/>
+                            <path d="M 10,190 Q 100,145 200,168 T 390,155"/>
+                            <path d="M 30,330 Q 130,290 200,310 T 380,295"/>
+                            <path d="M 40,120 Q 130,90 200,110 T 380,95"/>
+                        </g>
+
+                        <!-- Grille subtile -->
+                        <g opacity="0.06" stroke="#fff" stroke-width="0.5">
+                            <line x1="0" y1="100" x2="400" y2="100"/>
+                            <line x1="0" y1="200" x2="400" y2="200"/>
+                            <line x1="0" y1="300" x2="400" y2="300"/>
+                            <line x1="100" y1="0" x2="100" y2="400"/>
+                            <line x1="200" y1="0" x2="200" y2="400"/>
+                            <line x1="300" y1="0" x2="300" y2="400"/>
+                        </g>
+
+                        <!-- Cercles de rayon 20 km -->
+                        <circle cx="200" cy="200" r="155" fill="none" stroke="var(--accent)" stroke-opacity="0.45" stroke-dasharray="5 7" stroke-width="1.2"/>
+                        <circle cx="200" cy="200" r="100" fill="none" stroke="var(--teal)" stroke-opacity="0.30" stroke-dasharray="3 6" stroke-width="0.8"/>
+                        <circle cx="200" cy="200" r="50" fill="none" stroke="var(--teal)" stroke-opacity="0.20" stroke-dasharray="2 5" stroke-width="0.6"/>
+
+                        <!-- Pulse Marcillat -->
+                        <g class="map-pin map-pin-center">
+                            <circle cx="200" cy="200" r="24" fill="var(--accent)" opacity="0.12"/>
+                            <circle cx="200" cy="200" r="15" fill="var(--accent)" opacity="0.30"/>
+                            <circle cx="200" cy="200" r="9" fill="var(--accent)"/>
+                            <circle cx="200" cy="200" r="3" fill="#fff"/>
+                        </g>
+
+                        <!-- 11 villes périphériques avec labels -->
+                        <g class="map-pins">
+                            <g class="map-pin-city"><circle cx="161" cy="222" r="5" fill="var(--teal)"/><text x="161" y="244" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Terjat</text></g>
+                            <g class="map-pin-city"><circle cx="135" cy="162" r="5" fill="var(--teal)"/><text x="135" y="184" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Mazirat</text></g>
+                            <g class="map-pin-city"><circle cx="178" cy="200" r="4" fill="var(--teal)"/></g>
+                            <g class="map-pin-city"><circle cx="212" cy="243" r="5" fill="var(--teal)"/><text x="212" y="265" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Ronnet</text></g>
+                            <g class="map-pin-city"><circle cx="157" cy="149" r="5" fill="var(--teal)"/><text x="157" y="143" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Lignerolles</text></g>
+                            <g class="map-pin-city"><circle cx="238" cy="282" r="5" fill="var(--teal)"/><text x="238" y="304" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Arpheuilles</text></g>
+                            <g class="map-pin-city"><circle cx="232" cy="132" r="5" fill="var(--teal)"/><text x="232" y="126" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Villebret</text></g>
+                            <g class="map-pin-city"><circle cx="213" cy="150" r="5" fill="var(--teal)"/><text x="213" y="142" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Hyds</text></g>
+                            <g class="map-pin-city"><circle cx="232" cy="178" r="5" fill="var(--teal)"/><text x="246" y="180" text-anchor="start" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.78">Néris</text></g>
+                            <g class="map-pin-city"><circle cx="184" cy="111" r="6" fill="var(--teal)"/><text x="184" y="103" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#fff" opacity="0.92">Montluçon</text></g>
+                        </g>
+
+                        <!-- Label MARCILLAT central -->
+                        <text x="200" y="183" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" font-weight="700" fill="#fff" letter-spacing="2">MARCILLAT</text>
+                        <text x="200" y="227" text-anchor="middle" font-family="Inter" font-size="8" font-weight="500" fill="#fff" opacity="0.65">~20 km</text>
+
+                        <!-- CTA pill bas -->
+                        <g class="map-cta-group">
+                            <rect x="125" y="340" width="150" height="36" rx="18" fill="url(#ctaGrad)" filter="url(#pinGlow)" opacity="0.15"/>
+                            <rect x="125" y="340" width="150" height="36" rx="18" fill="url(#ctaGrad)"/>
+                            <g transform="translate(155, 358)">
+                                <circle cx="0" cy="0" r="9" fill="var(--accent)"/>
+                                <path d="M -3,-4 L 4,0 L -3,4 Z" fill="#fff"/>
+                            </g>
+                            <text x="208" y="362" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="var(--ink)" letter-spacing="0.3">Carte interactive</text>
+                        </g>
+
+                        <!-- Boussole décorative -->
+                        <g transform="translate(355, 45)" opacity="0.55">
+                            <circle cx="0" cy="0" r="14" fill="none" stroke="#fff" stroke-width="0.8"/>
+                            <path d="M 0,-10 L 3,0 L 0,10 L -3,0 Z" fill="var(--accent)"/>
+                            <text x="0" y="-18" text-anchor="middle" font-family="Inter" font-size="8" font-weight="700" fill="#fff">N</text>
+                        </g>
+                    </svg>
+                </button>
+
+                <!-- État interactif (chargé au clic) -->
                 <iframe
                     class="map-iframe"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=2.35%2C46.10%2C2.92%2C46.45&amp;layer=mapnik&amp;marker=46.2706%2C2.6372"
+                    id="mapIframe"
+                    data-src="https://www.openstreetmap.org/export/embed.html?bbox=2.35%2C46.10%2C2.92%2C46.45&amp;layer=mapnik&amp;marker=46.2706%2C2.6372"
                     title="Zone d'intervention +2 Rénovation autour de Marcillat-en-Combraille"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     aria-label="Carte interactive centrée sur Marcillat-en-Combraille"></iframe>
 
+                <!-- Overlay pins (visible par-dessus l'iframe quand actif) -->
                 <svg class="map-pins-overlay" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <defs>
-                        <radialGradient id="mapGradOver" cx="50%" cy="50%" r="55%">
-                            <stop offset="60%" stop-color="var(--accent)" stop-opacity="0"/>
-                            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.08"/>
-                        </radialGradient>
-                    </defs>
-                    <circle cx="200" cy="200" r="180" fill="url(#mapGradOver)"/>
-                    <circle cx="200" cy="200" r="155" stroke="var(--accent)" stroke-opacity="0.35" stroke-dasharray="4 6" stroke-width="1.2"/>
+                    <circle cx="200" cy="200" r="155" stroke="var(--accent)" stroke-opacity="0.4" stroke-dasharray="4 6" stroke-width="1.2"/>
                     <g class="map-pin map-pin-center">
                         <circle cx="200" cy="200" r="9" fill="var(--accent)"/>
                         <circle cx="200" cy="200" r="14" stroke="var(--accent)" stroke-opacity="0.55"/>
@@ -978,7 +1073,6 @@
                         <circle cx="184" cy="111" r="5" fill="var(--teal)"><title>Montluçon</title></circle>
                     </g>
                     <text x="200" y="183" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="var(--ink)">MARCILLAT</text>
-                    <text x="200" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="var(--ink)" opacity="0.65">~20 km</text>
                 </svg>
 
                 <a href="https://www.google.com/maps/place/Marcillat-en-Combraille/@46.2706,2.6372,11z" target="_blank" rel="noopener" class="map-open-link">
