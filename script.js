@@ -110,6 +110,8 @@
         '.footer-marquee-track',
         '.footer-heart',
         '.eyebrow-dot',
+        '.services-marquee-track',                  // marquee texte corps d'état
+        '.services-cards-marquee .services-grid',   // marquee cartes services
     ];
     if ('IntersectionObserver' in window) {
         const pauseIO = new IntersectionObserver(
@@ -411,6 +413,11 @@
             if (activeIndex !== lastActive) {
                 photos.forEach((p, i) => {
                     p.style.opacity = i === activeIndex ? '1' : '0';
+                    // Reset scale des photos non-actives → évite "flash de zoom" au scroll up
+                    if (i !== activeIndex) {
+                        const img = p.querySelector('img');
+                        if (img) img.style.transform = 'scale(1.04)';
+                    }
                 });
                 ticks.forEach((t, i) => {
                     t.classList.toggle('is-active', i === activeIndex);
@@ -425,9 +432,9 @@
             const activePhoto = photos[activeIndex]?.querySelector('img');
             if (activePhoto) activePhoto.style.transform = `scale(${scale.toFixed(3)})`;
 
-            // Split titles : écartement progressif au scroll
+            // Split titles : écartement progressif (réduit sur mobile pour éviter overflow)
             const splitProgress = Math.max(0, Math.min(1, (progress - 0.10) / 0.50));
-            const splitDistance = splitProgress * (window.innerWidth < 768 ? 35 : 28);
+            const splitDistance = splitProgress * (window.innerWidth < 768 ? 18 : 28);
             if (titleTop) titleTop.style.transform = `translate3d(-${splitDistance}vw, 0, 0)`;
             if (titleBot) titleBot.style.transform = `translate3d(${splitDistance}vw, 0, 0)`;
 
@@ -462,16 +469,30 @@
         if (reduceMotion) return;     // Pas de clone si reduce-motion (grille statique)
         const originals = Array.from(track.children);
         if (!originals.length) return;
+        // CRUCIAL : forcer .visible sur les originaux AVANT clone — sinon flash
+        // car l'animation CSS commence à -50% et la moitié gauche serait vide.
+        originals.forEach((card) => {
+            card.classList.add('visible');
+            card.style.removeProperty('--delay');
+        });
         // Clone chaque carte et marque le clone comme aria-hidden (info dupliquée)
         originals.forEach((card) => {
             const clone = card.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
-            // Retire les délais d'animation reveal sur les clones (sinon ils flashent)
-            clone.style.removeProperty('--delay');
-            clone.classList.add('visible');     // Skip l'animation reveal
             track.appendChild(clone);
         });
+        // Marque le wrapper comme prêt pour ne pas démarrer l'animation avant
+        wrapper.classList.add('is-ready');
     })();
+
+    // === Body lock cleanup : si on resize de mobile vers desktop avec nav ouvert ===
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
+            document.body.classList.remove('nav-open');
+            const burgerBtn = document.getElementById('burger');
+            if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'false');
+        }
+    }, { passive: true });
 
     /* ===== Frame Grid 3×3 expanding (réalisations / chantiers) ===== */
     const frameGrid = document.getElementById('frameGrid');

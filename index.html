@@ -38,6 +38,13 @@
     <link rel="preconnect" href="https://images.unsplash.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Préchargement LCP : la 1ère photo du hero cinématographique -->
+    <link rel="preload" as="image"
+          href="assets/hero/01-pelleteuse.webp"
+          imagesrcset="assets/hero/01-pelleteuse-mobile.webp 900w, assets/hero/01-pelleteuse.webp 1800w"
+          imagesizes="100vw"
+          fetchpriority="high">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ctext x='28' y='72' font-family='Inter,Arial,sans-serif' font-weight='900' font-size='62' fill='%231FB5A8'%3E2%3C/text%3E%3Cpath d='M68 28 L82 38 L82 42 L68 42 Z' fill='%231FB5A8'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F1A2A'/%3E%3Ctext x='28' y='72' font-family='Inter,Arial,sans-serif' font-weight='900' font-size='62' fill='%231FB5A8'%3E2%3C/text%3E%3Cpath d='M68 28 L82 38 L82 42 L68 42 Z' fill='%231FB5A8'/%3E%3C/svg%3E">
@@ -51,9 +58,10 @@
         "legalName": "+2 Rénovation E.U.R.L",
         "alternateName": ["Plus 2 Rénovation", "Plus2 Rénovation", "Entreprise +2 Rénovation"],
         "image": [
-            "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600",
-            "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600",
-            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600"
+            "https://www.plus2-renovation.fr/assets/hero/05-loft-realise.webp",
+            "https://www.plus2-renovation.fr/assets/hero/03-toiture-pose.webp",
+            "https://www.plus2-renovation.fr/assets/hero/01-pelleteuse.webp",
+            "https://www.plus2-renovation.fr/assets/og-cover.jpg"
         ],
         "@id": "https://www.plus2-renovation.fr/",
         "url": "https://www.plus2-renovation.fr/",
@@ -209,7 +217,7 @@
             <a href="https://wa.me/33660955151" class="header-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +2 Rénovation">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
-            <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false">
+            <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false" aria-controls="mainNav">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -230,7 +238,7 @@
             </picture>
             <picture class="hero-cinema-photo" data-photo="1">
                 <source media="(max-width: 768px)" srcset="assets/hero/02-toiture-debut-mobile.webp" type="image/webp">
-                <img src="assets/hero/02-toiture-debut.webp" alt="" loading="eager" decoding="async">
+                <img src="assets/hero/02-toiture-debut.webp" alt="" loading="lazy" decoding="async">
             </picture>
             <picture class="hero-cinema-photo" data-photo="2">
                 <source media="(max-width: 768px)" srcset="assets/hero/03-toiture-pose-mobile.webp" type="image/webp">
@@ -452,7 +460,7 @@
             </div>
         </div>
 
-        <p class="cert-cta-text reveal">Survolez une certification pour zoomer · cliquez pour en savoir plus</p>
+        <p class="cert-cta-text reveal">Toutes nos qualifications sont à jour · justificatifs sur simple demande</p>
     </div>
 </section>
 

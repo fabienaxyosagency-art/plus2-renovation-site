@@ -1104,8 +1104,8 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
     .cert-card {
         width: clamp(110px, 24vw, 150px);
     }
-    .cert-card h3 { font-size: 0.78rem; }
-    .cert-card p { font-size: 0.65rem; }
+    .cert-card h3 { font-size: 0.92rem; }
+    .cert-card p { font-size: 0.78rem; line-height: 1.4; }
     .cert-mark { width: 44px; height: 44px; font-size: 0.95rem; }
 }
 
@@ -1139,10 +1139,13 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent);
+    /* WCAG AA : --accent (#1FB5A8) sur fond clair = ratio 2.2:1 (échec).
+       --accent-dark (#157F76) sur paper = ratio 4.6:1 (passe). */
+    color: var(--accent-dark);
     margin-bottom: 1rem;
 }
 .eyebrow-light { color: var(--accent-light); }
+.section-dark .section-eyebrow { color: var(--accent-light); }
 
 .section-title {
     font-family: var(--font-display);
@@ -2237,11 +2240,13 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
     border: 1.5px solid var(--ink-10);
     border-radius: var(--radius-sm);
     background: var(--paper);
-    font-size: 0.95rem;
+    /* iOS Safari : font-size doit être >= 16px sinon zoom auto au focus */
+    font-size: 16px;
     color: var(--ink);
     transition: all var(--t-fast) var(--ease);
     width: 100%;
     font-family: inherit;
+    min-height: 44px;
 }
 .form-field input:focus,
 .form-field select:focus,
@@ -2574,7 +2579,9 @@ main#main > .section-soft {
 .cinematic-footer-wrapper {
     position: relative;
     width: 100%;
+    /* iOS Safari : 100vh inclut la barre URL → saute. dvh suit le viewport réel. */
     height: 100vh;
+    height: 100dvh;
     min-height: 720px;
     /* clip-path crée le containing block pour position:fixed enfant —
        isolation paint pour éviter conflits avec sticky d'au-dessus. */
@@ -2590,6 +2597,7 @@ main#main > .section-soft {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     min-height: 720px;
     display: flex;
     flex-direction: column;
@@ -2600,8 +2608,8 @@ main#main > .section-soft {
     color: var(--paper);
     overflow: hidden;
     z-index: 1;
-    /* Isolation rendu pour ne pas refaire de paint quand sections d'au-dessus scrollent */
-    contain: strict;
+    /* contain: strict cassait position:fixed enfants sur Safari → layout paint suffit */
+    contain: layout paint;
 }
 
 /* === Aurora glow animée === */
@@ -3548,8 +3556,8 @@ main#main > .hero-features-strip + .trust-strip {
 /* === MOBILE / RESPONSIVE — désactiver le scrub coûteux + simplifier === */
 @media (max-width: 768px) {
     main#main > .hero.hero-cinema {
-        height: 240vh;     /* Scroll runway plus court sur mobile */
-        min-height: 240vh;
+        height: 200vh;     /* Réduit le runway scroll (240→200) pour iOS Safari */
+        min-height: 200vh !important;
     }
     .hero-cinema-content {
         grid-template-rows: auto auto auto;
@@ -3562,14 +3570,14 @@ main#main > .hero-features-strip + .trust-strip {
         line-height: 0.95;
     }
     .hero-cinema-eyebrow {
-        font-size: 0.7rem;
-        padding: 0.45rem 0.85rem;
+        font-size: 0.85rem;     /* Lisibilité ≥ 13.6px */
+        padding: 0.5rem 0.95rem;
     }
     .hero-cinema-lead {
-        font-size: 0.95rem;
+        font-size: 0.98rem;
     }
     .hero-cinema-timeline {
-        right: 0.5rem;
+        right: 0.85rem;          /* Évite gestures bord iOS (back swipe) */
         padding: 8px 4px;
         gap: 6px;
     }
@@ -3623,6 +3631,7 @@ main#main > .hero-features-strip + .trust-strip {
 
 .services-marquee {
     position: relative;
+    /* Pleine largeur viewport. overflow-x: clip body évite scroll horizontal Android. */
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-block: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3rem);
@@ -3764,6 +3773,8 @@ main#main > .hero-features-strip + .trust-strip {
 
 .services-cards-marquee {
     position: relative;
+    /* Pleine largeur viewport (sort du container parent).
+       overflow-x: clip sur body protège des éventuels overflow Android. */
     width: 100vw;
     margin-left: calc(50% - 50vw);
     overflow: hidden;
@@ -3794,7 +3805,13 @@ main#main > .hero-features-strip + .trust-strip {
     padding-inline: clamp(1rem, 4vw, 2.5rem);
     /* Sens INVERSE du marquee top : on part de -50% et on va vers 0 */
     animation: servicesCardsMarqueeScroll 65s linear infinite;
+    /* Pause initiale : JS ajoute .is-ready après le clone des cartes
+       (évite le flash où la moitié gauche du marquee est vide à -50%) */
+    animation-play-state: paused;
     will-change: transform;
+}
+.services-cards-marquee.is-ready .services-grid {
+    animation-play-state: running;
 }
 
 /* Pause au survol pour pouvoir lire/cliquer */
@@ -3857,3 +3874,73 @@ main#main > .hero-features-strip + .trust-strip {
     }
 }
 
+
+/* ==========================================================================
+   AJUSTEMENTS RESPONSIVE FINAUX — fixes audit a11y/perf/desktop
+   ========================================================================== */
+
+/* Mobile : scroll-padding réduit pour matcher la hauteur header mobile (~60px) */
+@media (max-width: 768px) {
+    html { scroll-padding-top: 70px; }
+}
+
+/* Ultra-compact : masquer la timeline hero (peu utile sur si petit) */
+@media (max-width: 480px) {
+    .hero-cinema-timeline { display: none; }
+}
+
+/* Grands écrans desktop : réduire le runway hero pour ne pas piéger 5+ wheel scrolls */
+@media (min-width: 1440px) {
+    main#main > .hero.hero-cinema {
+        height: 280vh;
+        min-height: 280vh !important;
+    }
+}
+
+/* Grands écrans : élargir le container pour éviter de grands vides latéraux */
+@media (min-width: 1920px) {
+    :root { --max-width: 1480px; }
+    .container { max-width: 1480px; }
+}
+@media (min-width: 2560px) {
+    :root { --max-width: 1680px; }
+    .container { max-width: 1680px; }
+}
+
+/* Marquee cartes : agrandir sur grand écran (avant clampé à 340px sur 1920+) */
+@media (min-width: 1440px) {
+    .services-cards-marquee .service-card {
+        flex: 0 0 clamp(320px, 22vw, 420px);
+        width: clamp(320px, 22vw, 420px);
+    }
+}
+
+/* Frame grid réalisations : agrandir sur grand écran (avant plafonné à 540px) */
+@media (min-width: 1600px) {
+    .frame-grid {
+        max-width: 1400px;
+        max-height: 720px;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* === FOCUS-VISIBLE — outline cohérent sur tout interactif (a11y clavier) === */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+.contact-channel:focus-visible,
+.follow-card:focus-visible,
+.footer-pill:focus-visible,
+.btn:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: inherit;
+}
+
+/* === BODY LOCK : reset auto sur resize desktop (anti bug nav-open résiduel) === */
+@media (min-width: 769px) {
+    body.nav-open {
+        overflow: auto;        /* Force unlock si reste actif après resize */
+    }
+}
