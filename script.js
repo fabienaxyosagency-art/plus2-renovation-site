@@ -539,10 +539,12 @@
 
     // ========== ZONE MAP — preview cliquable → iframe interactif ==========
     (function initZoneMapActivation() {
+        const zone = document.getElementById('zoneMap');
         const frame = document.getElementById('mapFrame');
         const previewBtn = document.getElementById('mapPreviewBtn');
+        const ctaBtn = document.getElementById('mapCtaBtn');
         const iframe = document.getElementById('mapIframe');
-        if (!frame || !previewBtn || !iframe) return;
+        if (!zone || !frame || !previewBtn || !iframe) return;
 
         const activate = () => {
             if (frame.classList.contains('is-active')) return;
@@ -551,6 +553,7 @@
                 iframe.src = iframe.dataset.src;
             }
             frame.classList.add('is-active');
+            zone.classList.add('is-active');
             // Focus sur l'iframe pour l'interaction clavier
             setTimeout(() => iframe.focus(), 600);
         };
@@ -562,6 +565,7 @@
                 activate();
             }
         });
+        if (ctaBtn) ctaBtn.addEventListener('click', activate);
     })();
 
 })();
