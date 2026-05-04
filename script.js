@@ -494,46 +494,38 @@
         }
     }, { passive: true });
 
-    /* ===== Frame Grid 3×3 expanding (réalisations / chantiers) ===== */
+    /* ===== Frame Grid 1×3 expanding (réalisations / chantiers réels) ===== */
     const frameGrid = document.getElementById('frameGrid');
     if (frameGrid) {
         const cells = Array.from(frameGrid.querySelectorAll('.frame-cell'));
+        const COL_COUNT = cells.length || 3;
         const HOVER_SIZE = parseFloat(frameGrid.dataset.hoverSize) || 6;
-        const TOTAL = parseFloat(frameGrid.dataset.gridTotal) || 12;
-        const NON_HOVERED = (TOTAL - HOVER_SIZE) / 2;
+        const TOTAL = parseFloat(frameGrid.dataset.gridTotal) || (HOVER_SIZE + (COL_COUNT - 1) * 1.5);
+        const NON_HOVERED = (TOTAL - HOVER_SIZE) / Math.max(COL_COUNT - 1, 1);
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isMobile = () => window.innerWidth <= 700;
+        const isCompact = () => window.innerWidth <= 900;
 
-        const setSizes = (row, col) => {
-            if (isMobile() || reduceMotion) return;
-            if (row === null || col === null) {
-                frameGrid.style.removeProperty('--row-sizes');
+        const setSizes = (col) => {
+            if (isCompact() || reduceMotion) return;
+            if (col === null) {
                 frameGrid.style.removeProperty('--col-sizes');
                 return;
             }
-            const rows = [0, 1, 2].map((r) => r === row ? `${HOVER_SIZE}fr` : `${NON_HOVERED}fr`).join(' ');
-            const cols = [0, 1, 2].map((c) => c === col ? `${HOVER_SIZE}fr` : `${NON_HOVERED}fr`).join(' ');
-            frameGrid.style.setProperty('--row-sizes', rows);
+            const cols = Array.from({ length: COL_COUNT }, (_, c) => c === col ? `${HOVER_SIZE}fr` : `${NON_HOVERED}fr`).join(' ');
             frameGrid.style.setProperty('--col-sizes', cols);
-            // Origine de transform pour effet d'agrandissement vers le centre
-            const origin = `${col === 0 ? 'left' : col === 2 ? 'right' : 'center'} ${row === 0 ? 'top' : row === 2 ? 'bottom' : 'center'}`;
-            frameGrid.style.setProperty('transform-origin', origin);
         };
 
         cells.forEach((cell) => {
-            const row = parseInt(cell.dataset.row, 10);
             const col = parseInt(cell.dataset.col, 10);
-
-            cell.addEventListener('mouseenter', () => setSizes(row, col));
-            cell.addEventListener('focus', () => setSizes(row, col));
+            cell.addEventListener('mouseenter', () => setSizes(col));
+            cell.addEventListener('focus', () => setSizes(col));
         });
 
-        frameGrid.addEventListener('mouseleave', () => setSizes(null, null));
-        frameGrid.addEventListener('blur', () => setSizes(null, null), true);
+        frameGrid.addEventListener('mouseleave', () => setSizes(null));
+        frameGrid.addEventListener('blur', () => setSizes(null), true);
 
-        // Reset sur resize si on bascule en mobile
         window.addEventListener('resize', () => {
-            if (isMobile()) setSizes(null, null);
+            if (isCompact()) setSizes(null);
         }, { passive: true });
     }
 
