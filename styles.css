@@ -4353,3 +4353,9 @@ summary:focus-visible,
     .fab-wa svg{width:26px;height:26px}
 }
 @media (prefers-reduced-motion:reduce){.fab-wa::after{display:none} .fab-wa,.fab-wa span{transition:none}}
+
+/* Crédit footer — lien Fabien Rubalo */
+.footer-credit-link{text-decoration:none;color:inherit}
+.footer-credit-link strong{transition:color .2s var(--ease)}
+.footer-credit-link:hover strong,.footer-credit-link:focus-visible strong{color:var(--accent)}
+.footer-credit-link:hover{text-decoration:underline;text-underline-offset:3px}
