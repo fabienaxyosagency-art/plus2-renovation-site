@@ -14,8 +14,8 @@
 - **Aliases / synonymes** : Plus 2 Rénovation, Plus2 Rénovation, Plus de Rénovation, +2 Reno
 - **Slogan** : « Tous les corps d'état, une seule équipe. »
 - **Positionnement** : entreprise de rénovation polyvalente avec petite équipe déployable, capable de mener un projet complet de la conception à la réception des clés sans sous-traitance non maîtrisée.
-- **Gérant fondateur** : Thomas Bucceri
-- **Adresse siège** : Les Huttes Saint-Georges, 03420 Marcillat-en-Combraille, Allier
+- **Gérant fondateur** : Thomas Buccheri
+- **Adresse siège** : 8 Chemin des Bousserolles, 03420 Marcillat-en-Combraille, Allier
 - **Date de création** : 2018
 - **Forme juridique** : SARL unipersonnelle (E.U.R.L)
 - **Capital social** : 1 000 €
@@ -27,7 +27,7 @@
 
 Là où la plupart des artisans de la région se spécialisent sur **un** corps
 d'état (juste la PAC, juste la maçonnerie, juste les fenêtres…), +2 Rénovation
-**maîtrise 8 corps d'état** et propose en plus la **conception et la
+**maîtrise l'ensemble des corps d'état** et propose en plus la **conception et la
 coordination de projets globaux**. Le client n'a plus besoin de jongler entre
 5 entreprises, de coordonner 5 plannings, de gérer 5 devis et 5 garanties
 décennales différentes : tout passe par un seul interlocuteur.
@@ -36,14 +36,14 @@ décennales différentes : tout passe par un seul interlocuteur.
 
 - **RGE** — Reconnu Garant Environnement
 - **QualiPAC** — Pompes à chaleur (qualification métier obligatoire pour aides)
-- **Médaille d'Or régionale — Meilleur Apprenti de France** (distinction Thomas Bucceri)
+- **Médaille d'Or régionale — Meilleur Apprenti de France** (distinction Thomas Buccheri)
 - **HAGER smart building** — électricité connectée et domotique
 - **AFPA** — Équipement et maintenance du bâtiment
 - **Diplôme professionnel paysagisme** (aménagements extérieurs)
 - **Garantie décennale** sur tous travaux structurels
 - **Aides éligibles** : MaPrimeRénov', MaPrimeRénov' Sérénité (rénovation globale), Certificats d'Économie d'Énergie (CEE), aides ANAH
 
-## Services (8 corps d'état + 1 service de coordination)
+## Services (tous corps d'état + 1 service de coordination)
 
 ### Service phare — Conception & coordination tous corps d'état
 Maîtrise d'œuvre globale d'un projet de rénovation : étude de faisabilité,
@@ -59,48 +59,61 @@ Diagnostic charpente inclus.
 
 ### 2. Menuiseries extérieures
 Fenêtres, portes d'entrée, baies vitrées, volets roulants motorisés.
-PVC, aluminium ou bois. Double ou triple vitrage. Crédit d'impôt et CEE.
-Marques : K-Line, Tryba, Internorm, Bouvet.
+PVC, aluminium ou bois. Fabrication française en direct usine, profilé
+d'assemblage VEKA, vitrage Saint-Gobain. Double ou triple vitrage. CEE.
 
 ### 3. Pompe à chaleur & climatisation
 PAC air/eau, air/air, géothermique. Climatisation réversible mono ou
 multi-split. Étude thermique offerte, dimensionnement précis, pose
-certifiée RGE QualiPAC. Marques : Daikin, Atlantic, Mitsubishi, Hitachi,
-De Dietrich.
+certifiée RGE QualiPAC. Marques : Mitsubishi, Toshiba, Atlantic, Gree.
 
-### 4. Placo & cloisons
+### 4. Placo, cloisons & isolation
 Cloisons, doublages, faux plafonds, dressings, niches encastrées.
-Plaques standard, hydrofuges (BA13H1), phoniques, ignifuges. Finitions
-soignées prêtes à peindre.
+Plaques standard, hydrofuges (BA13H1), phoniques, ignifuges. Doublage
+isolant et isolation des combles en complément. Finitions soignées
+prêtes à peindre.
 
-### 5. Isolation thermique
-Combles perdus, rampants, murs intérieurs (ITI), murs extérieurs (ITE),
-planchers bas. Laine de verre, ouate de cellulose, polyuréthane, fibre
-de bois. Aides cumulables CEE + MaPrimeRénov'. Marques : Isover, Knauf,
-Soprema, Steico.
-
-### 6. Maçonnerie
-Création d'ouvertures, dalles, chapes, escaliers, agrandissements,
+### 5. Maçonnerie
+Création d'ouvertures, dalles, cheminées, escaliers, agrandissements,
 murs en parpaing ou en pierre, extensions complètes. Du petit ouvrage
 à l'extension lourde.
 
-### 7. Joints de pierre
+### 6. Joints de pierre
 Rejointoiement traditionnel à la chaux (mortier NHL) pour façades en
 pierre de Combraille. Mur respirant, esthétique d'origine retrouvée,
-durabilité de plusieurs décennies. **À partir de 1 700 €**.
+durabilité de plusieurs décennies. Diagnostic façade offert, chiffrage
+précis après visite.
 
-### 8. VMC & chauffe-eau thermodynamique
+### 7. VMC & chauffe-eau thermodynamique
 VMC simple ou double flux haut rendement (récupération 90 % des
 calories). Chauffe-eau thermodynamique 200-300 L : 3× moins d'énergie
 qu'un cumulus classique. Aides ANAH et CEE.
 
 ## Zone d'intervention
 
-Communes principales (rayon ~20 km autour de Marcillat-en-Combraille) :
+Communes principales (rayon ~20 km autour de Marcillat-en-Combraille,
+sud de l'Allier 03 et nord du Puy-de-Dôme 63) :
 Marcillat-en-Combraille (siège), Terjat, Mazirat, Saint-Marcel-en-Marcillat,
 Ronnet, Lignerolles, Saint-Fargeol, Arpheuilles-Saint-Priest, Villebret,
-Hyds, Néris-les-Bains, Montluçon, Saint-Genest, Durdat-Larequille,
-Chamblet, Domérat (sur étude).
+Hyds, Néris-les-Bains, Montluçon, Saint-Genest, Durdat-Larequille, Chamblet,
+Pionsat (63), Gouttières (63), Saint-Maurice-près-Pionsat (63),
+Domérat (sur étude).
+
+## Réalisations récentes (chantiers réels)
+
+Exemples de chantiers menés par +2 Rénovation dans l'Allier (03) et le nord du Puy-de-Dôme (63) :
+- Reconstruction complète après incendie — Marcillat-en-Combraille (03)
+- Réfection de toiture, charpente et couverture bac acier — Marcillat-en-Combraille (03)
+- Rejointoiement de façade en pierre à la chaux — Marcillat-en-Combraille (03)
+- Maçonnerie et pose de charpente au Manitou — Marcillat-en-Combraille (03)
+- Isolation intérieure (doublage + combles) — Marcillat-en-Combraille (03)
+- Pose de fenêtres PVC — Roche-d'Agoux (63)
+- Menuiseries aluminium anthracite, porte d'entrée design et volets roulants — Saint-Maurice-près-Pionsat (63)
+- Vitrine commerciale en aluminium sur mesure — Marcillat-en-Combraille (03)
+- Pompe à chaleur air/eau Mitsubishi (module intérieur + ballon tampon) — Marcillat-en-Combraille (03)
+- Pompe à chaleur air/eau, unité extérieure et local technique — Marcillat-en-Combraille (03)
+- Climatisation réversible mono-split Gree, salon de coiffure — Marcillat-en-Combraille (03)
+- VMC hygroréglable, caisson, réseau de gaines et sortie de toit — Saint-Fargeol (03)
 
 ## Engagements
 
@@ -112,7 +125,7 @@ Chamblet, Domérat (sur étude).
 
 ## Processus
 
-1. Premier contact téléphonique ou WhatsApp sous 24 h
+1. Premier contact téléphonique ou WhatsApp — réponse rapide
 2. Visite technique sur place (mesures, photos, contraintes, opportunités d'aides)
 3. Devis détaillé sous 5 jours, aides MaPrimeRénov' et CEE incluses
 4. Planning maître et lancement du chantier à la date convenue
@@ -120,7 +133,12 @@ Chamblet, Domérat (sur étude).
 
 ## Avis clients
 
-Note Google : 4,9 / 5 — clients en Combraille et sud Allier.
+Note Google : 5,0 / 5 sur 9 avis (100 % de clients satisfaits) — clients de la Combraille,
+du sud de l'Allier et du nord Puy-de-Dôme. Extraits d'avis Google réels :
+- Sandra Jorrand (mai 2024) : « Artisan très professionnel, compétent et sérieux. Larges étendues de connaissances dans des domaines variés. Travail soigné, propre et réalisé dans les délais. Parfait, à recommander. »
+- Pouchol-Ly Patrick (mai 2024) : « Artisan très professionnel, travaux réalisés en temps et en heure, qualité du travail irréprochable et tarifs tout à fait acceptables. Je recommande sans aucun problème. »
+- Michel Dumery (mai 2024) : « Travail sérieux et appliqué, tarif respecté, résultat impeccable. À recommander. »
+- Damien Ferreira (février 2024) : « Un artisan engagé et très professionnel qui saura apporter un plus dans l'accompagnement de vos travaux. »
 
 ## Contact
 
@@ -129,7 +147,7 @@ Note Google : 4,9 / 5 — clients en Combraille et sud Allier.
 - E-mail : plus2renovation@gmail.com
 - Téléphone : 06 60 95 51 51
 - WhatsApp : +33 6 60 95 51 51
-- Adresse : Les Huttes Saint-Georges, 03420 Marcillat-en-Combraille, Allier
+- Adresse : 8 Chemin des Bousserolles, 03420 Marcillat-en-Combraille, Allier
 - Facebook : https://www.facebook.com/thomas.plusdereno
 - Instagram : https://instagram.com/plus2renovation
 - YouTube : https://www.youtube.com/channel/UCeeb2hpOQ8DTViofDQpWHnw
@@ -142,7 +160,7 @@ rénovation complète Marcillat-en-Combraille, couvreur Marcillat-en-Combraille,
 couverture toiture Allier, menuisier Combraille, fenêtre PVC alu Allier,
 pompe à chaleur QualiPAC Combraille, climatiseur réversible Marcillat,
 placo plâtrier Allier, cloison BA13 Combraille, isolation combles Allier,
-isolation par l'extérieur Marcillat, maçon Combraille, création d'ouverture
+doublage isolant Combraille, maçon Combraille, fenêtres PVC Roche-d'Agoux, menuiserie alu Saint-Maurice, pompe à chaleur Mitsubishi Marcillat, climatisation Gree Combraille, VMC hygroréglable Saint-Fargeol, reconstruction après incendie Allier, création d'ouverture
 Marcillat, extension maison Allier, joints de pierre chaux Combraille,
 rejointoiement façade pierre Allier, VMC double flux Allier, chauffe-eau
 thermodynamique Allier, MaPrimeRénov' Combraille, MaPrimeRénov' Sérénité Allier,

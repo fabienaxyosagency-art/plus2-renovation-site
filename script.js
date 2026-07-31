@@ -666,3 +666,43 @@
     })();
 
 })();
+
+/* ===== Galerie chantiers : filtrage par métier + lightbox ===== */
+function initGallery(){
+    const grid=document.getElementById('workGrid');
+    // fondu doux des photos dès leur chargement (évite le "flash"/pop)
+    document.querySelectorAll('.work-media img').forEach(function(img){
+        var mark=function(){img.classList.add('is-loaded');};
+        if(img.complete&&img.naturalWidth>0){mark();}else{img.addEventListener('load',mark);img.addEventListener('error',mark);}
+    });
+    const filters=document.querySelectorAll('.work-filter');
+    if(filters.length && grid){
+        const cards=Array.from(grid.querySelectorAll('.work-card'));
+        filters.forEach(function(btn){
+            btn.addEventListener('click',function(){
+                filters.forEach(function(b){b.classList.remove('is-active');b.setAttribute('aria-pressed','false');});
+                btn.classList.add('is-active');btn.setAttribute('aria-pressed','true');
+                const f=btn.dataset.filter;
+                cards.forEach(function(card){card.classList.toggle('is-hidden',!(f==='all'||(card.dataset.cat||'').split(' ').includes(f)));});
+            });
+        });
+    }
+    const lb=document.getElementById('lightbox');
+    if(!lb) return;
+    const img=lb.querySelector('.lightbox-img'),titleEl=lb.querySelector('.lightbox-title'),countEl=lb.querySelector('.lightbox-count');
+    let photos=[],idx=0,title='';
+    function render(){img.src=photos[idx];img.alt=title+' — photo '+(idx+1);titleEl.textContent=title;countEl.textContent=(idx+1)+' / '+photos.length;}
+    function openCard(card){if(!card)return;photos=(card.dataset.photos||'').split('|').filter(Boolean);title=card.dataset.title||'';if(!photos.length)return;idx=0;render();lb.classList.add('is-open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+    function close(){lb.classList.remove('is-open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+    function go(d){if(!photos.length)return;idx=(idx+d+photos.length)%photos.length;render();}
+    document.addEventListener('click',function(e){
+        const more=e.target.closest('.work-more');
+        if(more){e.preventDefault();e.stopPropagation();openCard(more.closest('.work-card'));}
+    });
+    lb.querySelector('.lightbox-prev').addEventListener('click',function(){go(-1);});
+    lb.querySelector('.lightbox-next').addEventListener('click',function(){go(1);});
+    lb.querySelector('.lightbox-close').addEventListener('click',close);
+    lb.addEventListener('click',function(e){if(e.target===lb)close();});
+    document.addEventListener('keydown',function(e){if(!lb.classList.contains('is-open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')go(-1);else if(e.key==='ArrowRight')go(1);});
+}
+if(document.readyState!=='loading'){initGallery();}else{document.addEventListener('DOMContentLoaded',initGallery);}
