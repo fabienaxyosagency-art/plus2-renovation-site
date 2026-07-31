@@ -4307,6 +4307,30 @@ summary:focus-visible,
 .work-more svg{flex:none}
 @media (hover:none){.work-more{opacity:1;transform:none}}
 
+/* --- Galerie chantiers : carrousel horizontal, MOBILE UNIQUEMENT --- */
+@media (max-width:600px){
+  #workGrid.work-grid{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:.9rem;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;      /* accroche chaque carte */
+    -webkit-overflow-scrolling:touch;  /* défilement fluide iOS */
+    scrollbar-width:none;              /* masque la barre (Firefox) */
+    padding-bottom:.55rem;             /* un peu d'air sous les cartes */
+    scroll-padding-left:0;
+  }
+  #workGrid.work-grid::-webkit-scrollbar{display:none} /* masque la barre (iOS/Chrome) */
+  #workGrid .work-card{
+    flex:0 0 84%;                      /* 1 carte + aperçu de la suivante -> invite à glisser */
+    scroll-snap-align:start;
+    opacity:1;                         /* annule .reveal : sinon les cartes de droite restent invisibles */
+    transform:none;
+  }
+  #workGrid .work-card:hover{transform:none} /* pas de "saut" au toucher */
+}
+
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:1rem;padding:clamp(1rem,4vw,3rem);background:rgba(6,10,16,.93);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
 .lightbox.is-open{opacity:1;visibility:visible}
