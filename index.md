@@ -107,8 +107,8 @@ Néris-les-Bains, Montluçon.
 
 ## Contact
 
-- **Site** : https://www.plus2-renovation.fr/
-- **Site Vercel** : https://plus2-renovation-site.vercel.app/
+- **Site** : https://www.plus2renovation.fr/
+- **Site Vercel** : https://www.plus2renovation.fr/
 - **E-mail** : plus2renovation@gmail.com
 - **Téléphone / WhatsApp** : 06 60 95 51 51
 - **Adresse** : 8 Chemin des Bousserolles, 03420 Marcillat-en-Combraille, Allier

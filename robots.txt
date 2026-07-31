@@ -32,4 +32,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://www.plus2-renovation.fr/sitemap.xml
+Sitemap: https://www.plus2renovation.fr/sitemap.xml
