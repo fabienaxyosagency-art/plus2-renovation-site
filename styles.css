@@ -4205,6 +4205,31 @@ main#main > .hero-features-strip + .trust-strip {
     }
 }
 
+/* --- MOBILE : bande des corps d'état glissable au doigt (au lieu du défilement auto) --- */
+@media (max-width: 768px) {
+    .services-cards-marquee {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;        /* inertie iOS */
+        scroll-snap-type: x proximity;            /* accroche douce (texte long) */
+        scroll-padding-inline: clamp(1rem, 4vw, 2.5rem);
+        scrollbar-width: none;                    /* masque la barre (Firefox) */
+        -webkit-mask-image: none;                 /* pas de fondu -> cartes bien lisibles */
+                mask-image: none;
+    }
+    .services-cards-marquee::-webkit-scrollbar { display: none; } /* iOS/Chrome */
+    .services-cards-marquee .services-grid {
+        animation: none !important;               /* stoppe le marquee auto -> scroll manuel */
+    }
+    .services-cards-marquee .service-card {
+        scroll-snap-align: start;
+    }
+    /* Retire les cartes clonées (doublons créés uniquement pour la boucle auto) */
+    .services-cards-marquee .service-card[aria-hidden="true"] {
+        display: none !important;
+    }
+}
+
 
 /* ==========================================================================
    AJUSTEMENTS RESPONSIVE FINAUX — fixes audit a11y/perf/desktop
