@@ -4408,3 +4408,38 @@ summary:focus-visible,
 .footer-credit-link strong{transition:color .2s var(--ease)}
 .footer-credit-link:hover strong,.footer-credit-link:focus-visible strong{color:var(--accent)}
 .footer-credit-link:hover{text-decoration:underline;text-underline-offset:3px}
+
+
+/* ————— Signature RUB ————————————————————————————————
+   Crédit de pied de page. Classes préfixées « rub- » : aucun conflit
+   possible avec le reste de la feuille. Aucune couleur de fond imposée,
+   la signature prend celle du texte de l'hôte via currentColor.
+   Source et mode d'emploi : rub-agency-site/content/signature/
+   ———————————————————————————————————————————————————— */
+.rub-signature{display:flex;justify-content:center;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,
+  "Helvetica Neue",Arial,sans-serif}
+.rub-signature__lien{display:inline-flex;align-items:center;gap:.4em;
+  padding:.5em .9em;border-radius:999px;font-size:.8125rem;line-height:1;
+  text-decoration:none;color:currentColor;opacity:.55;
+  transition:opacity .35s ease,background-color .35s ease;
+  -webkit-tap-highlight-color:transparent}
+.rub-signature__lien:hover,.rub-signature__lien:focus-visible{opacity:1;
+  background-color:color-mix(in srgb,currentColor 8%,transparent)}
+.rub-signature__intro{font-weight:400;letter-spacing:.01em}
+.rub-signature__marque{font-weight:800;letter-spacing:-.02em}
+.rub-signature__point{color:#e8391f}
+.rub-signature__revele{display:inline-flex;align-items:center;gap:.35em;
+  max-width:0;overflow:hidden;white-space:nowrap;opacity:0;
+  transition:max-width .5s cubic-bezier(.22,.61,.36,1),opacity .35s ease}
+.rub-signature__lien:hover .rub-signature__revele,
+.rub-signature__lien:focus-visible .rub-signature__revele{max-width:26em;opacity:1}
+.rub-signature__baseline{font-weight:400}
+.rub-signature__fleche{width:.85em;height:.85em;flex-shrink:0}
+@media (hover:none){
+  .rub-signature__revele{max-width:none;opacity:.75}
+  .rub-signature__baseline{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .rub-signature__lien,.rub-signature__revele{transition:none}
+}
