@@ -3433,7 +3433,12 @@ main#main > .section-soft {
         line-height: 1.45;
     }
     .service-list li {
-        padding: 0.4rem 0;
+        /* padding-left conservé : sinon la puce absolue (left:0) chevauche le texte */
+        padding: 0.4rem 0 0.4rem 1.5rem;
+    }
+    .service-list li::before {
+        /* recentre la puce sur la 1re ligne compte tenu du padding-top ajouté */
+        top: calc(0.4rem + 0.45em);
     }
 
     /* ---- Réduire le padding vertical des sections sur mobile ---- */
@@ -4224,9 +4229,14 @@ main#main > .hero-features-strip + .trust-strip {
     .services-cards-marquee .service-card {
         scroll-snap-align: start;
     }
-    /* Retire les cartes clonées (doublons créés uniquement pour la boucle auto) */
-    .services-cards-marquee .service-card[aria-hidden="true"] {
-        display: none !important;
+    /* Les clones restent en place : ils alimentent la boucle infinie de
+       l'auto-défilement lent (JS). Ils sont aria-hidden -> ignorés des lecteurs. */
+
+    /* Pendant l'auto-défilement, on coupe le scroll-snap : sinon le navigateur
+       ré-accroche la carte la plus proche et lutte contre le mouvement JS.
+       Le snap revient dès que le doigt touche la bande. */
+    .services-cards-marquee.is-autoscrolling {
+        scroll-snap-type: none;
     }
 }
 

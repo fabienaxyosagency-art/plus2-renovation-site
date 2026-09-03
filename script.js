@@ -479,10 +479,123 @@
         originals.forEach((card) => {
             const clone = card.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
+            // aria-hidden + descendant focusable = violation WCAG : on sort les
+            // liens du clone du parcours clavier (le clic souris reste possible).
+            clone.querySelectorAll('a, button, [tabindex]').forEach((el) => {
+                el.setAttribute('tabindex', '-1');
+            });
             track.appendChild(clone);
         });
         // Marque le wrapper comme prêt pour ne pas démarrer l'animation avant
         wrapper.classList.add('is-ready');
+
+        /* --- MOBILE (<=768px) : auto-défilement lent de la bande ---------------
+           En dessous de 768px le marquee CSS est désactivé (la bande devient un
+           conteneur scrollable au doigt). On y ajoute un défilement lent piloté
+           en JS, qui se met en pause dès que l'utilisateur touche la bande et
+           reprend seul quelques secondes plus tard. */
+        const mqMobile = window.matchMedia('(max-width: 768px)');
+        const SPEED = 22;              // px/seconde — volontairement lent (lecture confortable)
+        const RESUME_DELAY = 3000;     // ms avant reprise après une interaction
+
+        let rafId = null;
+        let lastTs = 0;
+        let resumeTimer = null;
+        let userPaused = false;
+        let offScreen = false;
+        let loopWidth = 0;
+        // Position accumulée en JS : on n'incrémente PAS scrollLeft directement,
+        // le navigateur arrondit la valeur au pixel et un pas de ~0.35px/frame
+        // serait perdu à chaque itération (la bande resterait immobile).
+        let pos = 0;
+
+        // Distance exacte d'une boucle = écart entre la 1re carte et son clone
+        const measureLoop = () => {
+            const first = originals[0];
+            const firstClone = track.children[originals.length];
+            loopWidth = (first && firstClone)
+                ? Math.max(0, firstClone.offsetLeft - first.offsetLeft)
+                : 0;
+        };
+
+        const tick = (ts) => {
+            if (!lastTs) lastTs = ts;
+            const dt = Math.min((ts - lastTs) / 1000, 0.05);   // clamp : évite les sauts après un onglet en arrière-plan
+            lastTs = ts;
+            if (!userPaused && !offScreen && loopWidth > 0) {
+                pos += SPEED * dt;
+                if (pos >= loopWidth) pos -= loopWidth;   // boucle infinie sur les clones
+                wrapper.scrollLeft = pos;
+            }
+            rafId = requestAnimationFrame(tick);
+        };
+
+        const startAuto = () => {
+            if (rafId !== null) return;
+            measureLoop();
+            if (!loopWidth) return;
+            wrapper.classList.add('is-autoscrolling');
+            lastTs = 0;
+            pos = wrapper.scrollLeft;
+            rafId = requestAnimationFrame(tick);
+        };
+
+        const stopAuto = () => {
+            if (rafId !== null) cancelAnimationFrame(rafId);
+            rafId = null;
+            clearTimeout(resumeTimer);
+            userPaused = false;
+            wrapper.classList.remove('is-autoscrolling');
+            // Retour en desktop : overflow redevient hidden, un scrollLeft résiduel
+            // décalerait le marquee CSS de façon permanente.
+            pos = 0;
+            wrapper.scrollLeft = 0;
+        };
+
+        // Interaction utilisateur : on rend la main, puis on reprend en douceur
+        const pauseForUser = () => {
+            if (rafId === null) return;
+            userPaused = true;
+            wrapper.classList.remove('is-autoscrolling');   // rétablit le scroll-snap
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                userPaused = false;
+                lastTs = 0;
+                pos = wrapper.scrollLeft;      // repart d'où le doigt a laissé la bande
+                if (loopWidth > 0) pos = pos % loopWidth;
+                wrapper.classList.add('is-autoscrolling');
+            }, RESUME_DELAY);
+        };
+        ['touchstart', 'pointerdown', 'wheel'].forEach((evt) => {
+            wrapper.addEventListener(evt, pauseForUser, { passive: true });
+        });
+
+        // Pause hors écran (économie batterie/GPU)
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver((entries) => {
+                entries.forEach((entry) => { offScreen = !entry.isIntersecting; });
+            }, { rootMargin: '20% 0px 20% 0px' }).observe(wrapper);
+        }
+
+        // Pause quand l'onglet passe en arrière-plan
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) { offScreen = true; }
+            else { offScreen = false; lastTs = 0; }
+        });
+
+        const syncMode = () => {
+            if (mqMobile.matches) startAuto();
+            else stopAuto();
+        };
+        syncMode();
+        if (typeof mqMobile.addEventListener === 'function') {
+            mqMobile.addEventListener('change', syncMode);
+        } else if (typeof mqMobile.addListener === 'function') {
+            mqMobile.addListener(syncMode);            // Safari < 14
+        }
+        window.addEventListener('resize', () => {
+            if (mqMobile.matches) measureLoop();
+        }, { passive: true });
     })();
 
     // === Body lock cleanup : si on resize de mobile vers desktop avec nav ouvert ===
